@@ -8,6 +8,7 @@ var states  = null;
 var onStateChanged = null;
 var onObjectChanged = null;
 var sendToID = 1;
+var pimaticPID = null;
 
 var adapterShortName = setup.adapterName.substring(setup.adapterName.indexOf('.')+1);
 
@@ -26,6 +27,26 @@ function checkConnectionOfAdapter(cb, counter) {
         } else {
             setTimeout(function () {
                 checkConnectionOfAdapter(cb, counter + 1);
+            }, 1000);
+        }
+    });
+}
+
+function checkConnection(cb, counter) {
+    counter = counter || 0;
+    console.log('Try check pimatic #' + counter);
+    if (counter > 30) {
+        if (cb) cb('Cannot check connection');
+        return;
+    }
+
+    states.getState(adapterShortName + '.0.info.connection', function (err, state) {
+        if (err) console.error(err);
+        if (state && state.val) {
+            if (cb) cb();
+        } else {
+            setTimeout(function () {
+                checkConnection(cb, counter + 1);
             }, 1000);
         }
     });
@@ -91,6 +112,16 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     if (onStateChanged) onStateChanged(id, state);
                 },
                 function (_objects, _states) {
+                    //start pimatic
+                    var data = require('fs').readFileSync(__dirname + '/data/config.json');
+                    require('fs').writeFileSync(__dirname + '/../config.json', data);
+                    var fork = require('child_process').fork;
+                    pimaticPID = fork(__dirname + '/../node_modules/pimatic/pimatic.js', function (error, stdout, stderr) {
+                        if (error) {
+                            console.error('exec error: ' + error);
+                        }
+                    });
+
                     objects = _objects;
                     states  = _states;
                     _done();
@@ -98,39 +129,22 @@ describe('Test ' + adapterShortName + ' adapter', function() {
         });
     });
 
-/*
-    ENABLE THIS WHEN ADAPTER RUNS IN DEAMON MODE TO CHECK THAT IT HAS STARTED SUCCESSFULLY
-*/
     it('Test ' + adapterShortName + ' adapter: Check if adapter started', function (done) {
         this.timeout(60000);
+        //wait till pimatic started
         checkConnectionOfAdapter(function (res) {
             if (res) console.log(res);
             expect(res).not.to.be.equal('Cannot check connection');
-            objects.setObject('system.adapter.test.0', {
-                    common: {
-
-                    },
-                    type: 'instance'
-                },
-                function () {
-                    states.subscribeMessage('system.adapter.test.0');
-                    done();
-                });
+            checkConnection(function (res) {
+                expect(res).to.be.not.ok;
+                done();
+            })
         });
     });
-/**/
-
-/*
-    PUT YOUR OWN TESTS HERE USING
-    it('Testname', function ( done) {
-        ...
-    });
-
-    You can also use "sendTo" method to send messages to the started adapter
-*/
 
     after('Test ' + adapterShortName + ' adapter: Stop js-controller', function (done) {
         this.timeout(10000);
+        if (pimaticPID) pimaticPID.kill();
 
         setup.stopController(function (normalTerminated) {
             console.log('Adapter normal terminated: ' + normalTerminated);

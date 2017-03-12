@@ -330,6 +330,7 @@ function syncDevices(devices, callback) {
     var ids = [];
     for (var j = 0; j < objs.length; j++) {
         ids.push(objs[j]._id);
+        objects[objs[j]._id] = objs[j];
     }
     syncObjects(objs, function () {
         syncStates(_states, function () {
@@ -420,12 +421,13 @@ function syncAll(callback) {
 }
 function updateConnected(isConnected) {
     if (connected !== isConnected) {
+        connected = isConnected;
         adapter.setState('info.connection', connected, true);
         adapter.log.info(isConnected ? 'connected' : 'disconnected');
-        connected = isConnected;
     }
 }
 function connect() {
+    adapter.log.debug('Connect: ' + 'http://'  + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/?username=' + encodeURIComponent(adapter.config.username) + '&password=xxx');
     client = io.connect('http://'  + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/?username=' + encodeURIComponent(adapter.config.username) + '&password=' + encodeURIComponent(adapter.config.password), {
         reconnection: true,
         reconnectionDelay: 1000,
@@ -456,6 +458,29 @@ function connect() {
 
     client.on('variables', function (variables) {
         adapter.log.debug(variables);
+        var _states = [];
+        for (var s = 0; s < variables.length; s++) {
+            if (variables[s].value !== undefined && variables[s].value !== null) {
+                var state = {
+                    _id: adapter.namespace + '.devices.' + variables[s].name.replace(/\s/g, '_'),
+                    val: {
+                        val: variables[s].value,
+                        ack: true
+                    }
+                };
+                if (objects[state._id]) {
+                    if (objects[state._id].native.mapping) {
+                        if (objects[state._id].native.mapping[variables[s].value] !== undefined) {
+                            state.val.val = objects[state._id].native.mapping[variables[s].value];
+                        }
+                    }
+                    _states.push(state);
+                } else {
+                    adapter.log.warn('Unknown state: ' + state._id);
+                }
+            }
+        }
+        syncStates(_states);
     });
 
     client.on('pages', function (pages) {

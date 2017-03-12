@@ -55,19 +55,6 @@
         "def":   false
       },
       "native": {}
-    },
-    {
-      "_id":  "info.resync",
-      "type": "state",
-      "common": {
-        "role":  "state",
-        "name":  "read all states from pimatic anew",
-        "type":  "boolean",
-        "read":  true,
-        "write": true,
-        "def":   false
-      },
-      "native": {}
     }
   ]
 }
