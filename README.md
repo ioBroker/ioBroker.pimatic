@@ -1,3 +1,16 @@
+![Logo](admin/pimatic.png)
+# ioBroker.pimatic
+=================
+
+This adapter connects ioBroker with [pimatic](https://pimatic.org/).
+
+It exports devices and groups from pimatic and then monitors updates of variables.
+
+## Changelog
+### 0.1.0
+* (bluefox) initial release
+
+## License
 The MIT License (MIT)
 
 Copyright (c) 2017 bluefox <dogafox@gmail.com>

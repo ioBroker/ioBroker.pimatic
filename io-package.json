@@ -1,0 +1,73 @@
+{
+    "common": {
+        "name":                     "pimatic",
+        "version":                  "0.1.0",
+	    "news": {
+			"0.1.0": {
+			  "en": "initial adapter",
+			  "de": "Initiale Version",
+			  "ru": "Первоначальный адаптер"
+			}
+		},
+        "title":                    "Javascript/Node.js based pimatic adapter",
+        "desc":                     {
+				 "en": "ioBroker pimatic Adapter",
+				 "de": "ioBroker Pimatic Adapter",
+				 "ru": "ioBroker Pimatic драйвер"
+		},
+        "platform":                 "Javascript/Node.js",
+        "mode":                     "daemon",
+        "icon":                     "pimatic.png",
+        "enabled":                  true,
+		"extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.pimatic/master/admin/pimatic.png",
+		"keywords":                 ["pimatic"],
+        "readme":                   "https://github.com/ioBroker/ioBroker.pimatic/blob/master/README.md",
+		"loglevel":                 "info",
+        "type":                     "communication"
+    },
+    "native": {
+        "host": "localhost",
+        "port": 80,
+        "username": "",
+        "password": ""
+    },
+    "objects": [
+
+    ],
+  "instanceObjects": [
+    {
+      "_id":  "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id":  "info.connection",
+      "type": "state",
+      "common": {
+        "role":  "indicator.connected",
+        "name":  "If connected to pimatic server",
+        "type":  "boolean",
+        "read":  true,
+        "write": false,
+        "def":   false
+      },
+      "native": {}
+    },
+    {
+      "_id":  "info.resync",
+      "type": "state",
+      "common": {
+        "role":  "state",
+        "name":  "read all states from pimatic anew",
+        "type":  "boolean",
+        "read":  true,
+        "write": true,
+        "def":   false
+      },
+      "native": {}
+    }
+  ]
+}
