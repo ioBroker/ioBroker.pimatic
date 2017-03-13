@@ -419,6 +419,7 @@ function syncAll(callback) {
         });
     });
 }
+
 function updateConnected(isConnected) {
     if (connected !== isConnected) {
         connected = isConnected;
@@ -426,6 +427,7 @@ function updateConnected(isConnected) {
         adapter.log.info(isConnected ? 'connected' : 'disconnected');
     }
 }
+
 function connect() {
     adapter.log.debug('Connect: ' + 'http://'  + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/?username=' + encodeURIComponent(adapter.config.username) + '&password=xxx');
     client = io.connect('http://'  + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/?username=' + encodeURIComponent(adapter.config.username) + '&password=' + encodeURIComponent(adapter.config.password), {
@@ -453,11 +455,10 @@ function connect() {
     });
 
     client.on('rules', function (rules) {
-        adapter.log.debug(rules);
+        //adapter.log.debug('Rules ' + JSON.stringify(rules));
     });
 
     client.on('variables', function (variables) {
-        adapter.log.debug(variables);
         var _states = [];
         for (var s = 0; s < variables.length; s++) {
             if (variables[s].value !== undefined && variables[s].value !== null) {
@@ -484,7 +485,7 @@ function connect() {
     });
 
     client.on('pages', function (pages) {
-        adapter.log.debug(pages);
+        //adapter.log.debug('pages ' + JSON.stringify(pages));
     });
 
     client.on('groups', function (groups) {
@@ -497,14 +498,22 @@ function connect() {
     });
 
     client.on('deviceAttributeChanged', function (attrEvent) {
+        if (!attrEvent.deviceId || !attrEvent.attributeName) {
+            adapter.log.warn('Received invalid event: ' + JSON.stringify(attrEvent));
+            return;
+        }
+        var name = attrEvent.deviceId.replace(/\s/g, '_') + '.' + attrEvent.attributeName.replace(/\s/g, '_');
+        adapter.log.debug('update for "' + name + '": ' + JSON.stringify(attrEvent));
+        
         //{deviceId: device.id, attributeName, time: time.getTime(), value}
-        var id = adapter.namespace + '.devices.' + device.id.replace(/\s/g, '_') + '.' + attrEvent.attributeName.replace(/\s/g, '_');
+        var id = adapter.namespace + '.devices.' + name;
         if (objects[id]) {
             adapter.setForeignState(id, {val: attrEvent.value, ts: attrEvent.time, ack: true});
         } else {
             adapter.log.warn('Received update for unknown state: ' + JSON.stringify(attrEvent));
         }
     });
+
     client.on('callResult', function (msg) {
         if (objects[msg.id]) {
             adapter.setForeignState(msg.id, states[msg.id].val, true);
