@@ -9,7 +9,7 @@
 			  "ru": "Первоначальный адаптер"
 			}
 		},
-        "title":                    "Javascript/Node.js based pimatic adapter",
+        "title":                    "pimatic adapter",
         "desc":                     {
 				 "en": "ioBroker pimatic Adapter",
 				 "de": "ioBroker Pimatic Adapter",
