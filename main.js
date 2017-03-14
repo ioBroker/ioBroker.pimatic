@@ -18,6 +18,9 @@ var client;
 var objects = {};
 var states  = [];
 var connected = false;
+var url;
+var getUrl;
+var credentials;
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on('unload', function (callback) {
@@ -41,13 +44,36 @@ adapter.on('stateChange', function (id, state) {
                 if (!connected) {
                     adapter.log.warn('Cannot control: no connection to pimatic "' + adapter.config.host + '"');
                 } else {
-                    client.emit('call', {
+                    /*client.emit('call', {
                         id: id,
                         action: objects[id].native.control.action,
                         params: {
+                            deviceId: objects[id].native.control.deviceId,
                             name: objects[id].native.name,
                             type: objects[id].common.type,
                             valueOrExpression: state.val
+                        }
+                    });*/
+                    var link = getUrl + 'api/device/' + objects[id].native.control.deviceId + '/' + objects[id].native.control.action + '?' + objects[id].native.name + '=' + state.val;
+                    adapter.log.debug('http://' + link);
+                    request('http://' + credentials + link, function (err, res, body) {
+                        if (err || res.statusCode !== 200) {
+                            adapter.log.warn('Cannot write "' + id + '": ' + (body || err || res.statusCode));
+                            adapter.setForeignState(id, {val: state.val, ack: true, q: 0x40});
+                        } else {
+                            try {
+                                var data = JSON.parse(body);
+                                if (data.success) {
+                                    adapter.log.debug(body);
+                                    // the value will be updated in deviceAttributeChanged
+                                } else {
+                                    adapter.log.warn('Cannot write "' + id + '": ' + body);
+                                    adapter.setForeignState(id, {val: state.val, ack: true, q: 0x40});
+                                }
+                            } catch (e) {
+                                adapter.log.warn('Cannot write "' + id + '": ' + body);
+                                adapter.setForeignState(id, {val: state.val, ack: true, q: 0x40});
+                            }
                         }
                     });
                 }
@@ -79,36 +105,6 @@ adapter.on('ready', function () {
     main();
 });
 
-function processResponse(text, type, callback) {
-    try {
-        var data = JSON.parse(text);
-        if (data.success) {
-            callback && callback(null, data[type]);
-        } else {
-            callback && callback(data.error || !data.success);
-        }
-    } catch (e) {
-        adapter.log.error('Cannot parse answer (' + type + ') from pimatic: ' + e);
-        callback && callback(e);
-    }
-}
-
-function getData(type, callback) {
-    if (process.env.DEVELOPMENT) {
-        processResponse(require('fs').readFileSync(__dirname + '/test/data/' + type + '.json'), type, callback);
-    } else {
-        request({
-            url : 'http://' + encodeURIComponent(adapter.config.username) + ':' + encodeURIComponent(adapter.config.password) + '@' + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/api/' + type
-        }, function (err, resp, body) {
-            if (body) {
-                processResponse(body, type, callback);
-            } else {
-                adapter.log.error('Cannot read ' + type + ' from "' + adapter.config.host + '": ' + err);
-            }
-        });
-    }
-}
-
 function syncObjects(objs, callback) {
     if (!objs || !objs.length) {
         callback && callback();
@@ -128,6 +124,10 @@ function syncObjects(objs, callback) {
                     changed = true;
                     oObj.common[a] = obj.common[a];
                 }
+            }
+            if (JSON.stringify(obj.native) !== JSON.stringify(oObj.native)) {
+                changed = true;
+                oObj.native = obj.native;
             }
             objects[obj._id] = oObj;
             if (changed) {
@@ -299,7 +299,8 @@ function syncDevices(devices, callback) {
                             _found = true;
                             obj = localObjects[u];
                             obj.native.control = {
-                                action: action.name
+                                action: action.name,
+                                deviceId: device.id
                             };
                             obj.common.write = true;
                             if (obj.common.role === 'value.temperature') obj.common.role = 'level.temperature';
@@ -317,7 +318,11 @@ function syncDevices(devices, callback) {
                                 type: action.params[p].type
                             },
                             native: {
-
+                                name: p,
+                                control: {
+                                    action: action.name,
+                                    deviceId: device.id
+                                }
                             },
                             type: 'state'
                         };
@@ -391,6 +396,37 @@ function syncGroups(groups, ids, callback) {
     syncObjects(enums, callback);
 }
 
+/*
+function processResponse(text, type, callback) {
+    try {
+        var data = JSON.parse(text);
+        if (data.success) {
+            callback && callback(null, data[type]);
+        } else {
+            callback && callback(data.error || !data.success);
+        }
+    } catch (e) {
+        adapter.log.error('Cannot parse answer (' + type + ') from pimatic: ' + e);
+        callback && callback(e);
+    }
+}
+
+function getData(type, callback) {
+    if (process.env.DEVELOPMENT) {
+        processResponse(require('fs').readFileSync(__dirname + '/test/data/' + type + '.json'), type, callback);
+    } else {
+        request({
+            url : 'http://' + encodeURIComponent(adapter.config.username) + ':' + encodeURIComponent(adapter.config.password) + '@' + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/api/' + type
+        }, function (err, resp, body) {
+            if (body) {
+                processResponse(body, type, callback);
+            } else {
+                adapter.log.error('Cannot read ' + type + ' from "' + adapter.config.host + '": ' + err);
+            }
+        });
+    }
+}
+
 function syncAll(callback) {
     getData('devices', function (err, devices) {
         if (err) {
@@ -418,7 +454,7 @@ function syncAll(callback) {
             //});
         });
     });
-}
+}*/
 
 function updateConnected(isConnected) {
     if (connected !== isConnected) {
@@ -429,8 +465,11 @@ function updateConnected(isConnected) {
 }
 
 function connect() {
-    adapter.log.debug('Connect: ' + 'http://'  + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/?username=' + encodeURIComponent(adapter.config.username) + '&password=xxx');
-    client = io.connect('http://'  + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/?username=' + encodeURIComponent(adapter.config.username) + '&password=' + encodeURIComponent(adapter.config.password), {
+    url = url || 'http://'  + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/?username=' + encodeURIComponent(adapter.config.username) + '&password=';
+    credentials = credentials || encodeURIComponent(adapter.config.username) + ':' + encodeURIComponent(adapter.config.password);
+    getUrl = getUrl || '@' + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/';
+    adapter.log.debug('Connect: ' + url + 'xxx');
+    client = io.connect(url + encodeURIComponent(adapter.config.password), {
         reconnection: true,
         reconnectionDelay: 1000,
         reconnectionDelayMax: 3000,
