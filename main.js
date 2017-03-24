@@ -509,7 +509,7 @@ function connect() {
                     }
                 };
                 if (objects[state._id]) {
-                    if (objects[state._id].native.mapping) {
+                    if (objects[state._id].native && objects[state._id].native.mapping) {
                         if (objects[state._id].native.mapping[variables[s].value] !== undefined) {
                             state.val.val = objects[state._id].native.mapping[variables[s].value];
                         }

@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "pimatic",
-        "version":                  "0.1.1",
+        "version":                  "0.1.2",
 	    "news": {
+			"0.1.2": {
+			  "en": "fixed error",
+			  "de": "korrigiere Fehler",
+			  "ru": "Исправлена ошибка"
+			},
 			"0.1.1": {
 			  "en": "initial adapter",
 			  "de": "Initiale Version",

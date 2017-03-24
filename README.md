@@ -7,9 +7,11 @@ This adapter connects ioBroker with [pimatic](https://pimatic.org/).
 It exports devices and groups from pimatic and then monitors updates of variables.
 
 ## Changelog
+### 0.1.2
+* (bluefox) fixed error
+
 ### 0.1.1
 * (bluefox) initial release
-
 ## License
 The MIT License (MIT)
 
