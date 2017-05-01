@@ -54,8 +54,25 @@ adapter.on('stateChange', function (id, state) {
                             valueOrExpression: state.val
                         }
                     });*/
+                    // convert values
+                    if (objects[id].common.type === 'boolean') {
+                        state.val = (state.val === true || state.val === 'true' || state.val === '1' || state.val === 1 || state.val === 'on' || state.val === 'ON');
+                    } else if (objects[id].common.type === 'number') {
+                        if (typeof state.val !== 'number') {
+                            if (state.val === true || state.val === 'true' || state.val === 'on' || state.val === 'ON') {
+                                state.val = 1;
+                            } else if (state.val === false || state.val === 'false' || state.val === 'off' || state.val === 'OFF') {
+                                state.val = 0;
+                            } else {
+                                state.val = parseFloat((state.val || '0').toString().replace(',', '.'));
+                            }
+                        }
+                    }
+
                     var link = getUrl + 'api/device/' + objects[id].native.control.deviceId + '/' + objects[id].native.control.action + '?' + objects[id].native.name + '=' + state.val;
                     adapter.log.debug('http://' + link);
+
+
                     request('http://' + credentials + link, function (err, res, body) {
                         if (err || res.statusCode !== 200) {
                             adapter.log.warn('Cannot write "' + id + '": ' + (body || err || res.statusCode));
@@ -225,7 +242,7 @@ function syncDevices(devices, callback) {
                 obj.native = attr;
 
                 if (obj.common.type === 'boolean') {
-                    if (device.template === 'presence') obj.common.role = 'indicator.presence';
+                    if (device.template === 'presence') obj.common.role = 'state';//'indicator.presence';
                     if (attr.labels && attr.labels[0] !== 'true') {
                         obj.common.states = {false: attr.labels[1], true: attr.labels[0]};
                     }
