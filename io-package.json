@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "pimatic",
-        "version":                  "0.1.3",
+        "version":                  "0.1.4",
 	    "news": {
+			"0.1.4": {
+			  "en": "add translation of config dialog",
+			  "de": "Übersetzungen von Config-Dialog hinzugefügt",
+			  "ru": "Добавлен перевод настроек"
+			},
             "0.1.3": {
               "en": "convert on/off to true/false\nRemove indicator.presence",
               "de": "Konvertiere on/off nach true/false\nindicator.presence deaktiviert",
