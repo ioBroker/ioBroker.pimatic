@@ -1,9 +1,7 @@
 systemDictionary = {
-    "pimatic adapter settings": {"de": "Beispiel", "ru": "Пример"},
-    "test1":                    {"en": "Test 1", "de": "Test 1", "ru": "Тест 1"},
-    "test2":                    {"en": "Test 2", "de": "Test 2", "ru": "Тест 2"},
-    "on save adapter restarts with new config immediately": {
-        "de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
-        "ru": "Сразу после сохранения настроек драйвер перезапуститься с новыми значениями"
-    }
+    "Pimatic adapter settings":     {"de": "Pimatic Adaptereinstellungen", "ru": "Настройки драйвера Pimatic"},
+    "IP address:":                  {"en": "IP address:",       "de": "IP Adresse:",    "ru": "IP адрес:"},
+    "Port:":                        {"en": "Port:",             "de": "Port:",          "ru": "Порт:"},
+    "Username:":                    {"en": "Username:",         "de": "Username:",      "ru": "Имя пользователя:"},
+    "Password:":                    {"en": "Password:",         "de": "Kennwort:",      "ru": "Пароль:"}
 };

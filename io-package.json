@@ -1,9 +1,9 @@
 {
     "common": {
         "name":                     "pimatic",
-        "version":                  "0.1.4",
+        "version":                  "0.1.5",
 	    "news": {
-			"0.1.4": {
+			"0.1.5": {
 			  "en": "add translation of config dialog",
 			  "de": "Übersetzungen von Config-Dialog hinzugefügt",
 			  "ru": "Добавлен перевод настроек"
