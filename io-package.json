@@ -1,44 +1,52 @@
 {
     "common": {
-        "name":                     "pimatic",
-        "version":                  "0.1.5",
-	    "news": {
-			"0.1.5": {
-			  "en": "add translation of config dialog",
-			  "de": "Übersetzungen von Config-Dialog hinzugefügt",
-			  "ru": "Добавлен перевод настроек"
-			},
-            "0.1.3": {
-              "en": "convert on/off to true/false\nRemove indicator.presence",
-              "de": "Konvertiere on/off nach true/false\nindicator.presence deaktiviert",
-              "ru": "Конвертировать on/off в true/false\nУбрана роль indicator.presence"
+        "name": "pimatic",
+        "version": "0.1.5",
+        "news": {
+            "0.1.5": {
+                "en": "add translation of config dialog",
+                "de": "Übersetzungen von Config-Dialog hinzugefügt",
+                "ru": "Добавлен перевод настроек"
             },
-			"0.1.2": {
-			  "en": "fixed error",
-			  "de": "korrigiere Fehler",
-			  "ru": "Исправлена ошибка"
-			},
-			"0.1.1": {
-			  "en": "initial adapter",
-			  "de": "Initiale Version",
-			  "ru": "Первоначальный адаптер"
-			}
-		},
-        "title":                    "pimatic adapter",
-        "desc":                     {
-				 "en": "ioBroker pimatic Adapter",
-				 "de": "ioBroker Pimatic Adapter",
-				 "ru": "ioBroker Pimatic драйвер"
-		},
-        "platform":                 "Javascript/Node.js",
-        "mode":                     "daemon",
-        "icon":                     "pimatic.png",
-        "enabled":                  true,
-		"extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.pimatic/master/admin/pimatic.png",
-		"keywords":                 ["pimatic"],
-        "readme":                   "https://github.com/ioBroker/ioBroker.pimatic/blob/master/README.md",
-		"loglevel":                 "info",
-        "type":                     "communication"
+            "0.1.3": {
+                "en": "convert on/off to true/false\nRemove indicator.presence",
+                "de": "Konvertiere on/off nach true/false\nindicator.presence deaktiviert",
+                "ru": "Конвертировать on/off в true/false\nУбрана роль indicator.presence"
+            },
+            "0.1.2": {
+                "en": "fixed error",
+                "de": "korrigiere Fehler",
+                "ru": "Исправлена ошибка"
+            },
+            "0.1.1": {
+                "en": "initial adapter",
+                "de": "Initiale Version",
+                "ru": "Первоначальный адаптер"
+            }
+        },
+        "title": "pimatic adapter",
+        "desc": {
+            "en": "ioBroker pimatic Adapter",
+            "de": "ioBroker Pimatic Adapter",
+            "ru": "ioBroker Pimatic драйвер"
+        },
+        "platform": "Javascript/Node.js",
+        "mode": "daemon",
+        "icon": "pimatic.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.pimatic/master/admin/pimatic.png",
+        "keywords": [
+            "pimatic"
+        ],
+        "readme": "https://github.com/ioBroker/ioBroker.pimatic/blob/master/README.md",
+        "loglevel": "info",
+        "type": "iot-systems",
+        "authors": [
+            {
+                "name": "bluefox",
+                "email": "dogafox@gmail.com"
+            }
+        ]
     },
     "native": {
         "host": "localhost",
@@ -46,30 +54,28 @@
         "username": "",
         "password": ""
     },
-    "objects": [
-
-    ],
-  "instanceObjects": [
-    {
-      "_id":  "info",
-      "type": "channel",
-      "common": {
-        "name": "Information"
-      },
-      "native": {}
-    },
-    {
-      "_id":  "info.connection",
-      "type": "state",
-      "common": {
-        "role":  "indicator.connected",
-        "name":  "If connected to pimatic server",
-        "type":  "boolean",
-        "read":  true,
-        "write": false,
-        "def":   false
-      },
-      "native": {}
-    }
-  ]
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "If connected to pimatic server",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
+    ]
 }
