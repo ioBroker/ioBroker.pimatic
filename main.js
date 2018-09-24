@@ -196,6 +196,7 @@ function syncDevices(devices, callback) {
     for (var d = 0; d < devices.length; d++) {
         var localObjects = [];
         var device = devices[d];
+        adapter.log.debug('Handle Device: ' + JSON.stringify(device));
         var obj = {
             _id: adapter.namespace + '.devices.' + device.id,
             common: {
@@ -210,6 +211,7 @@ function syncDevices(devices, callback) {
         if (attributes && attributes.length) {
             for (var a = 0; a < attributes.length; a++) {
                 var attr = attributes[a];
+                adapter.log.debug('Handle Attribute: ' + JSON.stringify(attr));
                 var id = adapter.namespace + '.devices.' + device.id + '.' + attr.name.replace(/\s/g, '_');
                 obj = {
                     _id: id,
@@ -560,7 +562,7 @@ function connect() {
         }
         var name = attrEvent.deviceId.replace(/\s/g, '_') + '.' + attrEvent.attributeName.replace(/\s/g, '_');
         adapter.log.debug('update for "' + name + '": ' + JSON.stringify(attrEvent));
-        
+
         //{deviceId: device.id, attributeName, time: time.getTime(), value}
         var id = adapter.namespace + '.devices.' + name;
         if (objects[id]) {
