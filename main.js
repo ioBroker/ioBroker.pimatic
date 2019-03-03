@@ -10,7 +10,7 @@
 'use strict';
 
 // you have to require the utils module and call adapter function
-var utils   = require(__dirname + '/lib/utils'); // Get common adapter utils
+var utils = require('@iobroker/adapter-core'); // Get common adapter utils
 var request = require('request');
 var adapter = utils.Adapter('pimatic');
 var io      = require('socket.io-client');
