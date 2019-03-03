@@ -37,7 +37,8 @@
     "mocha": "^4.1.0",
     "chai": "^4.1.2",
     "socket.io": "^1.5.1",
-    "pimatic": "^0.9.38"
+    "pimatic": "^0.9.38",
+    "@iobroker/adapter-core": "^1.0.3"
   },
   "main": "main.js",
   "scripts": {
