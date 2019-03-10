@@ -1,6 +1,6 @@
 ![Logo](admin/pimatic.png)
 # ioBroker.pimatic
-=================
+![Number of Installations](http://iobroker.live/badges/pimatic-installed.svg) ![Number of Installations](http://iobroker.live/badges/pimatic-stable.svg) =================
 
 This adapter connects ioBroker with [pimatic](https://pimatic.org/).
 
