@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "pimatic",
-        "version": "0.2.0",
+        "version": "0.2.1",
         "news": {
-            "0.2.0": {
+            "0.2.1": {
                 "en": "Added Variables with Readonly false to the Sync\nReafactoring (compact mode, ES6)",
                 "de": "Variablen mit Readonly false zur Synchronisierung hinzugefügt\nReafactoring (Kompaktmodus, ES6)",
                 "ru": "Добавлены переменные с Readonly false для синхронизации\nРефакторинг (компактный режим, ES6)",

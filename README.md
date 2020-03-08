@@ -9,7 +9,7 @@ This adapter connects ioBroker with [pimatic](https://pimatic.org/).
 It exports devices and groups from pimatic and then monitors updates of variables.
 
 ## Changelog
-### 0.2.0 (2020.03.08)
+### 0.2.1 (2020.03.08)
 * (tehmilcho) Added Variables with Readonly false to the Sync
 * (bluefox) Reafactoring (compact mode, ES6)
 
