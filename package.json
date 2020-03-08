@@ -1,6 +1,6 @@
 {
   "name": "iobroker.pimatic",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "ioBroker pimatic Adapter",
   "author": {
     "name": "bluefox",
@@ -25,18 +25,16 @@
     "url": "https://github.com/ioBroker/ioBroker.pimatic"
   },
   "dependencies": {
-    "socket.io-client": "^1.5.1",
-    "request": "^2.81.0",
-    "@iobroker/adapter-core": "^1.0.3"
+    "@iobroker/adapter-core": "^1.0.3",
+    "request": "^2.88.2",
+    "socket.io-client": "^2.3.0",
+    "sqlite3": "^4.0.9"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-replace": "^1.0.1",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-jscs": "^3.0.1",
-    "grunt-http": "^2.2.0",
-    "mocha": "^4.1.0",
-    "chai": "^4.1.2",
+    "gulp": "^4.0.2",
+    "mocha": "^7.0.0",
+    "chai": "^4.2.0",
+    "@iobroker/testing": "^1.2.5",
     "socket.io": "^1.5.1",
     "pimatic": "^0.9.38"
   },

@@ -14,19 +14,18 @@
 
     // the function loadSettings has to exist ...
     function load(settings, onChange) {
-        // example: select elements with id=key and class=value and insert value
         for (var key in settings) {
             if (!settings.hasOwnProperty(key)) continue;
 
             var $value = $('#' + key + '.value');
             if ($value.attr('type') === 'checkbox') {
-                $value.prop('checked', settings[key]).change(function () {
+                $value.prop('checked', settings[key]).on('change', function () {
 					onChange();
 				});
             } else {
-                $value.val(settings[key]).change(function () {
+                $value.val(settings[key]).on('change', function () {
 					onChange();
-				}).keyup(function () {
+				}).on('keyup', function () {
 					$(this).trigger('change');
 				});
             }

@@ -1,7 +1,8 @@
-Gruntfile.js
+gulpfile.js
 tasks
 node_modules
 .idea
+tmp
 .git
 /node_modules
 test
