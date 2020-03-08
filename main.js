@@ -69,30 +69,48 @@ adapter.on('stateChange', function (id, state) {
                         }
                     }
 
-                    var link = getUrl + 'api/device/' + objects[id].native.control.deviceId + '/' + objects[id].native.control.action + '?' + objects[id].native.name + '=' + state.val;
-                    adapter.log.debug('http://' + link);
+                    // Update variables mod by tehmilcho
+                    if (objects[id].native.control.action == 'updateVariable') {
+                        
+                        client.emit('call', {
+                         // id: id,
+                          id: objects[id].native.control.deviceId,
+                          action: 'updateVariable',
+                          params: {
+                            name: objects[id].native.control.deviceId,
+                            type: 'value',
+                            valueOrExpression: state.val
+                          }
+                        });
+                        adapter.setForeignState(id, {val: state.val, ack: true});
 
+                    } else {
 
-                    request('http://' + credentials + link, function (err, res, body) {
-                        if (err || res.statusCode !== 200) {
-                            adapter.log.warn('Cannot write "' + id + '": ' + (body || err || res.statusCode));
-                            adapter.setForeignState(id, {val: state.val, ack: true, q: 0x40});
-                        } else {
-                            try {
-                                var data = JSON.parse(body);
-                                if (data.success) {
-                                    adapter.log.debug(body);
-                                    // the value will be updated in deviceAttributeChanged
-                                } else {
+                        var link = getUrl + 'api/device/' + objects[id].native.control.deviceId + '/' + objects[id].native.control.action + '?' + objects[id].native.name + '=' + state.val;
+                        adapter.log.debug('http://' + link);
+                        
+
+                        request('http://' + credentials + link, function (err, res, body) {
+                            if (err || res.statusCode !== 200) {
+                                adapter.log.warn('Cannot write "' + id + '": ' + (body || err || res.statusCode));
+                                adapter.setForeignState(id, {val: state.val, ack: true, q: 0x40});
+                            } else {
+                                try {
+                                    var data = JSON.parse(body);
+                                    if (data.success) {
+                                        adapter.log.debug(body);
+                                        // the value will be updated in deviceAttributeChanged
+                                    } else {
+                                        adapter.log.warn('Cannot write "' + id + '": ' + body);
+                                        adapter.setForeignState(id, {val: state.val, ack: true, q: 0x40});
+                                    }
+                                } catch (e) {
                                     adapter.log.warn('Cannot write "' + id + '": ' + body);
                                     adapter.setForeignState(id, {val: state.val, ack: true, q: 0x40});
                                 }
-                            } catch (e) {
-                                adapter.log.warn('Cannot write "' + id + '": ' + body);
-                                adapter.setForeignState(id, {val: state.val, ack: true, q: 0x40});
                             }
-                        }
-                    });
+                        });
+                    }
                 }
             } else {
                 adapter.log.warn('State "' + id + '" is read only');
@@ -196,7 +214,8 @@ function syncDevices(devices, callback) {
     for (var d = 0; d < devices.length; d++) {
         var localObjects = [];
         var device = devices[d];
-        adapter.log.debug('Handle Device: ' + JSON.stringify(device));
+       // adapter.log.debug('Handle Device: ' + JSON.stringify(device));
+       adapter.log.debug('Handle Device: ' + device.id);
         var obj = {
             _id: adapter.namespace + '.devices.' + device.id,
             common: {
@@ -363,6 +382,56 @@ function syncDevices(devices, callback) {
     });
 }
 
+// Update variables mod by tehmilcho
+
+function syncVariables(variables, callback) {
+    var objs = [];
+    var _states = [];
+    
+    for (var v = 0; v < variables.length; v++) {
+        var localObjects = [];
+        var variable = variables[v];
+        if (variable.readonly == false) {
+        adapter.log.debug('Handle Variables: ' + JSON.stringify(variable));
+        var obj = {
+            _id: adapter.namespace + '.devices.' + variable.name,
+            common: {
+                name: variable.name,
+                read: true,
+                write: true,
+                role: 'pimatic-variable'
+            },
+            native: {
+                name: variable.name,
+                control: {
+                    action: 'updateVariable',
+                    deviceId: variable.name
+                }
+            },
+            type: 'state'
+        };
+        _states.push({
+                    _id: adapter.namespace + '.devices.' + variable.name,
+                    val: {
+                        ack: true,
+                        val: variable.value,
+                    }
+        });
+        objs.push(obj);
+        localObjects.push(obj);
+       }
+    }
+    var ids = [];
+    for (var vj = 0; vj < objs.length; vj++) {
+        ids.push(objs[vj]._id);
+        objects[objs[vj]._id] = objs[vj];
+    }
+    syncObjects(objs, function () {
+        syncStates(_states, function () {
+            callback && callback(ids);
+        });
+    });
+}
 function syncGroups(groups, ids, callback) {
     var enums = [];
     var obj = {
@@ -415,66 +484,6 @@ function syncGroups(groups, ids, callback) {
     syncObjects(enums, callback);
 }
 
-/*
-function processResponse(text, type, callback) {
-    try {
-        var data = JSON.parse(text);
-        if (data.success) {
-            callback && callback(null, data[type]);
-        } else {
-            callback && callback(data.error || !data.success);
-        }
-    } catch (e) {
-        adapter.log.error('Cannot parse answer (' + type + ') from pimatic: ' + e);
-        callback && callback(e);
-    }
-}
-
-function getData(type, callback) {
-    if (process.env.DEVELOPMENT) {
-        processResponse(require('fs').readFileSync(__dirname + '/test/data/' + type + '.json'), type, callback);
-    } else {
-        request({
-            url : 'http://' + encodeURIComponent(adapter.config.username) + ':' + encodeURIComponent(adapter.config.password) + '@' + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/api/' + type
-        }, function (err, resp, body) {
-            if (body) {
-                processResponse(body, type, callback);
-            } else {
-                adapter.log.error('Cannot read ' + type + ' from "' + adapter.config.host + '": ' + err);
-            }
-        });
-    }
-}
-
-function syncAll(callback) {
-    getData('devices', function (err, devices) {
-        if (err) {
-            // try later
-            callback && callback(err);
-            return;
-        }
-        syncDevices(devices, function (ids) {
-            // redundant information
-            //getData('variables', function (err, variables) {
-                //if (err) {
-                    // try later
-                //    callback && callback(err);
-                ///    return;
-                //}
-                getData('groups', function (err, groups) {
-                    if (err) {
-                        // try later
-                        callback && callback(err);
-                        ids = null;
-                    } else {
-                        syncGroups(groups, ids, callback);
-                    }
-                });
-            //});
-        });
-    });
-}*/
-
 function updateConnected(isConnected) {
     if (connected !== isConnected) {
         connected = isConnected;
@@ -517,6 +526,9 @@ function connect() {
     });
 
     client.on('variables', function (variables) {
+
+        syncVariables(variables);
+
         var _states = [];
         for (var s = 0; s < variables.length; s++) {
             if (variables[s].value !== undefined && variables[s].value !== null) {
@@ -568,7 +580,7 @@ function connect() {
         if (objects[id]) {
             adapter.setForeignState(id, {val: attrEvent.value, ts: attrEvent.time, ack: true});
         } else {
-            adapter.log.warn('Received update for unknown state: ' + JSON.stringify(attrEvent));
+             adapter.log.warn('Received update for unknown state: '+ id + ' ' + JSON.stringify(attrEvent));
         }
     });
 
