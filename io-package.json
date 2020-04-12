@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "pimatic",
-        "version": "0.2.1",
+        "version": "0.3.0",
         "news": {
+            "0.3.0": {
+                "en": "compatibility for js-controller 3.0 added, dependencies updated and removed support for admin 2",
+                "de": "Kompatibilität für js-controller 3.0 hinzugefügt, Abhängigkeiten aktualisiert und Unterstützung für admin 2 entfernt",
+                "ru": "добавлена совместимость для js-controller 3.0, обновлены зависимости и удалена поддержка admin 2",
+                "pt": "compatibilidade para js-controller 3.0 adicionada, dependências atualizadas e suporte removido para admin 2",
+                "nl": "compatibiliteit voor js-controller 3.0 toegevoegd, afhankelijkheden bijgewerkt en verwijderd ondersteuning voor admin 2",
+                "fr": "compatibilité pour js-controller 3.0 ajoutée, dépendances mises à jour et suppression de la prise en charge pour admin 2",
+                "it": "compatibilità per js-controller 3.0 aggiunta, dipendenze aggiornate e supporto rimosso per admin 2",
+                "es": "compatibilidad para js-controller 3.0 agregado, dependencias actualizadas y soporte eliminado para admin 2",
+                "pl": "dodano kompatybilność dla js-kontrolera 3.0, zaktualizowano zależności i usunięto wsparcie dla administratora 2",
+                "zh-cn": "添加了对js-controller 3.0的兼容性，更新了依赖项并删除了对admin 2的支持"
+            },
             "0.2.1": {
                 "en": "Added Variables with Readonly false to the Sync\nReafactoring (compact mode, ES6)",
                 "de": "Variablen mit Readonly false zur Synchronisierung hinzugefügt\nReafactoring (Kompaktmodus, ES6)",
@@ -70,6 +82,12 @@
             }
         ]
     },
+    "encryptedNative" : [
+        "enc_password"
+    ],
+    "protectedNative" : [
+        "enc_password"
+    ],
     "native": {
         "host": "localhost",
         "port": 80,

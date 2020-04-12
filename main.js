@@ -158,7 +158,7 @@ function startAdapter(options) {
             adapter.tools.migrateEncodedAttributes(adapter, 'password')
                 .then(migrated => {
                     if (!migrated) {
-                        if (!adapter.supportsFeature || !adapter.supportsFeature('ADAPTER_AUTO_DECRYPT')) {
+                        if (!adapter.supportsFeature || !adapter.supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE')) {
                             adapter.getEncryptedConfig('enc_password')
                                 .then(value => {
                                     adapter.config.enc_password = value;
@@ -170,7 +170,7 @@ function startAdapter(options) {
                     }
                 });
         } else {
-            if (!adapter.supportsFeature || !adapter.supportsFeature('ADAPTER_AUTO_DECRYPT')) {
+            if (!adapter.supportsFeature || !adapter.supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE')) {
                 adapter.getEncryptedConfig('enc_password')
                     .then(value => {
                         adapter.config.enc_password = value;

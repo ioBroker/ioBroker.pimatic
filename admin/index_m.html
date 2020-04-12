@@ -16,7 +16,7 @@
         var _secret;
 
         function load(settings, onChange) {
-            if (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT')) {
+            if (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE')) {
                 if (typeof systemSecret !== 'undefined') {
                     _secret = systemSecret;
                 } else {
@@ -56,7 +56,7 @@
                 }
             });
 
-            if (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT')) {
+            if (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE')) {
                 if (obj.enc_password) {
                     obj.enc_password = encrypt(_secret, obj.enc_password);
                 }
