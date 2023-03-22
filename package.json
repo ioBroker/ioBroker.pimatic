@@ -25,17 +25,17 @@
     "url": "https://github.com/ioBroker/ioBroker.pimatic"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.2.1",
+    "@iobroker/adapter-core": "^2.6.7",
     "request": "^2.88.2",
-    "socket.io-client": "^2.3.0",
-    "sqlite3": "^4.1.1"
+    "socket.io-client": "^2.5.0",
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
-    "mocha": "^7.1.1",
-    "chai": "^4.2.0",
-    "@iobroker/testing": "^2.1.0",
-    "socket.io": "^2.3.0",
+    "mocha": "^10.2.0",
+    "chai": "^4.3.7",
+    "@iobroker/testing": "^4.1.0",
+    "socket.io": "^2.5.0",
     "pimatic": "^0.9.54"
   },
   "main": "main.js",

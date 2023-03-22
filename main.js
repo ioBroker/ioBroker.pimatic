@@ -31,13 +31,6 @@ function startAdapter(options) {
 
     adapter.getEncryptedConfig = adapter.getEncryptedConfig || getEncryptedConfig;
 
-    try {
-        adapter.tools = adapter.tools || require(utils.controllerDir + '/lib/tools');
-        adapter.tools.migrateEncodedAttributes = adapter.tools.migrateEncodedAttributes || migrateEncodedAttributes;
-    } catch (e) {
-        adapter.tools = {decrypt, migrateEncodedAttributes};
-    }
-
     // is called when adapter shuts down - callback has to be called under any circumstances!
     adapter.on('unload', callback => {
         try {
@@ -154,32 +147,20 @@ function startAdapter(options) {
 // start here!
     adapter.on('ready', () => {
         // automatic migration of token
-        if (adapter.tools && adapter.tools.migrateEncodedAttributes) {
-            adapter.tools.migrateEncodedAttributes(adapter, 'password')
-                .then(migrated => {
-                    if (!migrated) {
-                        if (!adapter.supportsFeature || !adapter.supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE')) {
-                            adapter.getEncryptedConfig('enc_password')
-                                .then(value => {
-                                    adapter.config.enc_password = value;
-                                    main(adapter);
-                                });
-                        } else {
-                            main(adapter);
-                        }
-                    }
-                });
-        } else {
-            if (!adapter.supportsFeature || !adapter.supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE')) {
-                adapter.getEncryptedConfig('enc_password')
-                    .then(value => {
-                        adapter.config.enc_password = value;
+        migrateEncodedAttributes(adapter, 'password')
+            .then(migrated => {
+                if (!migrated) {
+                    if (!adapter.supportsFeature || !adapter.supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE')) {
+                        adapter.getEncryptedConfig('enc_password')
+                            .then(value => {
+                                adapter.config.enc_password = value;
+                                main(adapter);
+                            });
+                    } else {
                         main(adapter);
-                    });
-            } else {
-                main(adapter);
-            }
-        }
+                    }
+                }
+            });
     });
 
     return adapter;
@@ -431,7 +412,7 @@ function syncDevices(devices, callback) {
 function syncVariables(variables, callback) {
     const objs = [];
     const _states = [];
-    
+
     for (let v = 0; v < variables.length; v++) {
         const localObjects = [];
         const variable = variables[v];
@@ -706,7 +687,7 @@ function getEncryptedConfig(attribute, callback) {
                 if (data && data.native) {
                     systemSecret = data.native.secret;
                 }
-                callback(null, adapter.tools.decrypt(systemSecret, adapter.config[attribute]));
+                callback(null, adapter.decrypt(systemSecret, adapter.config[attribute]));
             });
         }
     } else {
@@ -716,20 +697,6 @@ function getEncryptedConfig(attribute, callback) {
             return Promise.reject('Attribute not found');
         }
     }
-}
-
-/**
- * Decrypt the password/value with given key
- * @param {string} key - Secret key
- * @param {string} value - value to decript
- * @returns {string}
- */
-function decrypt(key, value) {
-    let result = '';
-    for(let i = 0; i < value.length; i++) {
-        result += String.fromCharCode(key[i % key.length].charCodeAt(0) ^ value.charCodeAt(i));
-    }
-    return result;
 }
 
 function main(adapter) {

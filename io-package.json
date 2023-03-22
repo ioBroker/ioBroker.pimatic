@@ -80,6 +80,16 @@
                 "name": "bluefox",
                 "email": "dogafox@gmail.com"
             }
+        ],
+        "dependencies": [
+            {
+                "js-controller": ">=2.0.0"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=3.0.0"
+            }
         ]
     },
     "encryptedNative" : [
