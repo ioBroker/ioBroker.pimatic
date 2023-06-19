@@ -1,6 +1,6 @@
 {
   "name": "iobroker.pimatic",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "ioBroker pimatic Adapter",
   "author": {
     "name": "bluefox",

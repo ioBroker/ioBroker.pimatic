@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "pimatic",
-        "version": "0.3.0",
+        "version": "0.3.2",
         "news": {
-            "0.3.1": {
+            "0.3.2": {
                 "en": "Prepare for future js-controller versions",
                 "de": "Bereiten Sie sich auf zukünftige js-Controller-Versionen",
                 "ru": "Подготовьтесь к будущим версиям js-controller",
