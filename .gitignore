@@ -4,3 +4,6 @@
 tmp
 /*.sqlite
 /*.sqlite-wal
+
+#ignore .commitinfo created by ioBroker release script
+.commitinfo
