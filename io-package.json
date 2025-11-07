@@ -86,6 +86,7 @@
         "materialize": true,
         "readme": "https://github.com/ioBroker/ioBroker.pimatic/blob/master/README.md",
         "loglevel": "info",
+        "tier": 2,
         "compact": true,
         "type": "iot-systems",
         "authors": [
