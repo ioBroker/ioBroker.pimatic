@@ -78,7 +78,10 @@
         "mode": "daemon",
         "icon": "pimatic.png",
         "enabled": true,
-        "license": "MIT",
+        "licenseInformation": {
+            "type": "free",
+            "license": "MIT"
+        },
         "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.pimatic/master/admin/pimatic.png",
         "keywords": [
             "pimatic"
