@@ -34,6 +34,8 @@ It exports devices and groups from pimatic and then monitors updates of variable
 ### 0.1.1
 * (bluefox) initial release
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 The MIT License (MIT)
 
