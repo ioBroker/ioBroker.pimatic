@@ -10,6 +10,10 @@ It exports devices and groups from pimatic and then monitors updates of variable
 
 ## Changelog
 
+
+### **WORK IN PROGRESS**
+- (ioBroker-Bot) Adapter requires js-controller >= 6.0.11 now.
+
 ### 0.3.2 (2023.03.22)
 * (Apollon77) Prepare for future js-controller versions
 
