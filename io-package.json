@@ -1,144 +1,146 @@
 {
-    "common": {
-        "name": "pimatic",
-        "version": "0.3.2",
-        "news": {
-            "0.3.2": {
-                "en": "Prepare for future js-controller versions",
-                "de": "Bereiten Sie sich auf zukünftige js-Controller-Versionen",
-                "ru": "Подготовьтесь к будущим версиям js-controller",
-                "pt": "Prepare-se para futuras versões js-controller",
-                "nl": "Bereid je voor op toekomstige Js-controller versie",
-                "fr": "Préparez-vous pour les versions futures de js-controller",
-                "it": "Prepararsi per le future versioni js-controller",
-                "es": "Prepararse para futuras versiones js-controller",
-                "pl": "Prepare for future js-controller version",
-                "uk": "Підготовка до майбутніх версій js-controller",
-                "zh-cn": "今后防污版本的编制"
-            },
-            "0.3.0": {
-                "en": "compatibility for js-controller 3.0 added, dependencies updated and removed support for admin 2",
-                "de": "Kompatibilität für js-controller 3.0 hinzugefügt, Abhängigkeiten aktualisiert und Unterstützung für admin 2 entfernt",
-                "ru": "добавлена совместимость для js-controller 3.0, обновлены зависимости и удалена поддержка admin 2",
-                "pt": "compatibilidade para js-controller 3.0 adicionada, dependências atualizadas e suporte removido para admin 2",
-                "nl": "compatibiliteit voor js-controller 3.0 toegevoegd, afhankelijkheden bijgewerkt en verwijderd ondersteuning voor admin 2",
-                "fr": "compatibilité pour js-controller 3.0 ajoutée, dépendances mises à jour et suppression de la prise en charge pour admin 2",
-                "it": "compatibilità per js-controller 3.0 aggiunta, dipendenze aggiornate e supporto rimosso per admin 2",
-                "es": "compatibilidad para js-controller 3.0 agregado, dependencias actualizadas y soporte eliminado para admin 2",
-                "pl": "dodano kompatybilność dla js-kontrolera 3.0, zaktualizowano zależności i usunięto wsparcie dla administratora 2",
-                "zh-cn": "添加了对js-controller 3.0的兼容性，更新了依赖项并删除了对admin 2的支持"
-            },
-            "0.2.1": {
-                "en": "Added Variables with Readonly false to the Sync\nReafactoring (compact mode, ES6)",
-                "de": "Variablen mit Readonly false zur Synchronisierung hinzugefügt\nReafactoring (Kompaktmodus, ES6)",
-                "ru": "Добавлены переменные с Readonly false для синхронизации\nРефакторинг (компактный режим, ES6)",
-                "pt": "Variáveis adicionadas com Readonly false à sincronização\nReativação (modo compacto, ES6)",
-                "nl": "Variabelen met readonly false toegevoegd aan de synchronisatie\nReafactoring (compacte modus, ES6)",
-                "fr": "Ajout de variables avec Readonly false à la synchronisation\nRéactivation (mode compact, ES6)",
-                "it": "Aggiunte variabili con Readonly false alla sincronizzazione\nReafactoring (modalità compatta, ES6)",
-                "es": "Se agregaron variables con Readonly false a la sincronización\nReafactorización (modo compacto, ES6)",
-                "pl": "Dodano zmienne z Readonly false do synchronizacji\nReafaktoryzacja (tryb kompaktowy, ES6)",
-                "zh-cn": "向同步添加了具有只读false的变量\n重构（紧凑模式，ES6）"
-            },
-            "0.1.5": {
-                "en": "add translation of config dialog",
-                "de": "Übersetzungen von Config-Dialog hinzugefügt",
-                "ru": "Добавлен перевод настроек"
-            },
-            "0.1.3": {
-                "en": "convert on/off to true/false\nRemove indicator.presence",
-                "de": "Konvertiere on/off nach true/false\nindicator.presence deaktiviert",
-                "ru": "Конвертировать on/off в true/false\nУбрана роль indicator.presence"
-            },
-            "0.1.2": {
-                "en": "fixed error",
-                "de": "korrigiere Fehler",
-                "ru": "Исправлена ошибка"
-            },
-            "0.1.1": {
-                "en": "initial adapter",
-                "de": "Initiale Version",
-                "ru": "Первоначальный адаптер"
-            }
-        },
-        "title": "pimatic",
-        "desc": {
-            "en": "Exports devices and groups from pimatic and then monitors updates of variables",
-            "de": "Exportiert Geräte und Gruppen aus pimatic und überwacht dann Aktualisierungen von Variablen",
-            "ru": "Экспортирует устройства и группы из pimatic, а затем следит за обновлениями переменных",
-            "pt": "Exporta dispositivos e grupos do pimatic e monitora atualizações de variáveis",
-            "nl": "Exporteert apparaten en groepen uit Pimatic en controleert vervolgens updates van variabelen",
-            "fr": "Exporte les appareils et les groupes de pimatic, puis surveille les mises à jour des variables",
-            "it": "Esporta dispositivi e gruppi da pimatic e quindi monitora gli aggiornamenti delle variabili",
-            "es": "Exporta dispositivos y grupos desde pimatic y luego monitorea actualizaciones de variables",
-            "pl": "Eksportuje urządzenia i grupy z pimatic, a następnie monitoruje aktualizacje zmiennych",
-            "zh-cn": "从pimatic导出设备和组，然后监视变量的更新"
-        },
-        "platform": "Javascript/Node.js",
-        "mode": "daemon",
-        "icon": "pimatic.png",
-        "enabled": true,
-        "license": "MIT",
-        "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.pimatic/master/admin/pimatic.png",
-        "keywords": [
-            "pimatic"
-        ],
-        "materialize": true,
-        "readme": "https://github.com/ioBroker/ioBroker.pimatic/blob/master/README.md",
-        "loglevel": "info",
-        "compact": true,
-        "type": "iot-systems",
-        "authors": [
-            {
-                "name": "bluefox",
-                "email": "dogafox@gmail.com"
-            }
-        ],
-        "dependencies": [
-            {
-                "js-controller": ">=2.0.0"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=3.0.0"
-            }
-        ]
+  "common": {
+    "name": "pimatic",
+    "version": "0.3.2",
+    "news": {
+      "0.3.2": {
+        "en": "Prepare for future js-controller versions",
+        "de": "Bereiten Sie sich auf zukünftige js-Controller-Versionen",
+        "ru": "Подготовьтесь к будущим версиям js-controller",
+        "pt": "Prepare-se para futuras versões js-controller",
+        "nl": "Bereid je voor op toekomstige Js-controller versie",
+        "fr": "Préparez-vous pour les versions futures de js-controller",
+        "it": "Prepararsi per le future versioni js-controller",
+        "es": "Prepararse para futuras versiones js-controller",
+        "pl": "Prepare for future js-controller version",
+        "uk": "Підготовка до майбутніх версій js-controller",
+        "zh-cn": "今后防污版本的编制"
+      },
+      "0.3.0": {
+        "en": "compatibility for js-controller 3.0 added, dependencies updated and removed support for admin 2",
+        "de": "Kompatibilität für js-controller 3.0 hinzugefügt, Abhängigkeiten aktualisiert und Unterstützung für admin 2 entfernt",
+        "ru": "добавлена совместимость для js-controller 3.0, обновлены зависимости и удалена поддержка admin 2",
+        "pt": "compatibilidade para js-controller 3.0 adicionada, dependências atualizadas e suporte removido para admin 2",
+        "nl": "compatibiliteit voor js-controller 3.0 toegevoegd, afhankelijkheden bijgewerkt en verwijderd ondersteuning voor admin 2",
+        "fr": "compatibilité pour js-controller 3.0 ajoutée, dépendances mises à jour et suppression de la prise en charge pour admin 2",
+        "it": "compatibilità per js-controller 3.0 aggiunta, dipendenze aggiornate e supporto rimosso per admin 2",
+        "es": "compatibilidad para js-controller 3.0 agregado, dependencias actualizadas y soporte eliminado para admin 2",
+        "pl": "dodano kompatybilność dla js-kontrolera 3.0, zaktualizowano zależności i usunięto wsparcie dla administratora 2",
+        "zh-cn": "添加了对js-controller 3.0的兼容性，更新了依赖项并删除了对admin 2的支持"
+      },
+      "0.2.1": {
+        "en": "Added Variables with Readonly false to the Sync\nReafactoring (compact mode, ES6)",
+        "de": "Variablen mit Readonly false zur Synchronisierung hinzugefügt\nReafactoring (Kompaktmodus, ES6)",
+        "ru": "Добавлены переменные с Readonly false для синхронизации\nРефакторинг (компактный режим, ES6)",
+        "pt": "Variáveis adicionadas com Readonly false à sincronização\nReativação (modo compacto, ES6)",
+        "nl": "Variabelen met readonly false toegevoegd aan de synchronisatie\nReafactoring (compacte modus, ES6)",
+        "fr": "Ajout de variables avec Readonly false à la synchronisation\nRéactivation (mode compact, ES6)",
+        "it": "Aggiunte variabili con Readonly false alla sincronizzazione\nReafactoring (modalità compatta, ES6)",
+        "es": "Se agregaron variables con Readonly false a la sincronización\nReafactorización (modo compacto, ES6)",
+        "pl": "Dodano zmienne z Readonly false do synchronizacji\nReafaktoryzacja (tryb kompaktowy, ES6)",
+        "zh-cn": "向同步添加了具有只读false的变量\n重构（紧凑模式，ES6）"
+      },
+      "0.1.5": {
+        "en": "add translation of config dialog",
+        "de": "Übersetzungen von Config-Dialog hinzugefügt",
+        "ru": "Добавлен перевод настроек"
+      },
+      "0.1.3": {
+        "en": "convert on/off to true/false\nRemove indicator.presence",
+        "de": "Konvertiere on/off nach true/false\nindicator.presence deaktiviert",
+        "ru": "Конвертировать on/off в true/false\nУбрана роль indicator.presence"
+      },
+      "0.1.2": {
+        "en": "fixed error",
+        "de": "korrigiere Fehler",
+        "ru": "Исправлена ошибка"
+      },
+      "0.1.1": {
+        "en": "initial adapter",
+        "de": "Initiale Version",
+        "ru": "Первоначальный адаптер"
+      }
     },
-    "encryptedNative" : [
-        "enc_password"
-    ],
-    "protectedNative" : [
-        "enc_password"
-    ],
-    "native": {
-        "host": "localhost",
-        "port": 80,
-        "username": "",
-        "enc_password": ""
+    "title": "pimatic",
+    "desc": {
+      "en": "Exports devices and groups from pimatic and then monitors updates of variables",
+      "de": "Exportiert Geräte und Gruppen aus pimatic und überwacht dann Aktualisierungen von Variablen",
+      "ru": "Экспортирует устройства и группы из pimatic, а затем следит за обновлениями переменных",
+      "pt": "Exporta dispositivos e grupos do pimatic e monitora atualizações de variáveis",
+      "nl": "Exporteert apparaten en groepen uit Pimatic en controleert vervolgens updates van variabelen",
+      "fr": "Exporte les appareils et les groupes de pimatic, puis surveille les mises à jour des variables",
+      "it": "Esporta dispositivi e gruppi da pimatic e quindi monitora gli aggiornamenti delle variabili",
+      "es": "Exporta dispositivos y grupos desde pimatic y luego monitorea actualizaciones de variables",
+      "pl": "Eksportuje urządzenia i grupy z pimatic, a następnie monitoruje aktualizacje zmiennych",
+      "zh-cn": "从pimatic导出设备和组，然后监视变量的更新"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "If connected to pimatic server",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        }
-    ]
+    "platform": "Javascript/Node.js",
+    "mode": "daemon",
+    "icon": "pimatic.png",
+    "enabled": true,
+    "license": "MIT",
+    "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.pimatic/master/admin/pimatic.png",
+    "keywords": [
+      "pimatic"
+    ],
+    "readme": "https://github.com/ioBroker/ioBroker.pimatic/blob/master/README.md",
+    "loglevel": "info",
+    "compact": true,
+    "type": "iot-systems",
+    "authors": [
+      {
+        "name": "bluefox",
+        "email": "dogafox@gmail.com"
+      }
+    ],
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.11"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=3.0.0"
+      }
+    ],
+    "adminUI": {
+      "config": "materialize"
+    }
+  },
+  "encryptedNative": [
+    "enc_password"
+  ],
+  "protectedNative": [
+    "enc_password"
+  ],
+  "native": {
+    "host": "localhost",
+    "port": 80,
+    "username": "",
+    "enc_password": ""
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "If connected to pimatic server",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
 }
