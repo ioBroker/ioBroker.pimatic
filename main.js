@@ -221,7 +221,7 @@ function syncStates(_states, callback) {
                 }
             }
             if (changed) {
-                adapter.setForeignState(oState._id, oState, () =>
+                adapter.setForeignState(state._id, oState, () =>
                     setTimeout(syncStates, 0, _states, callback));
             } else {
                 setTimeout(syncStates, 0, _states, callback);
