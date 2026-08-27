@@ -1,175 +1,178 @@
 {
-    "common": {
-        "name": "pimatic",
-        "version": "0.3.3",
-        "news": {
-            "0.3.3": {
-                "en": "Fixed the write of pimatic variables: the required common.type was missing (js-controller 4.x and newer)\nRead-only variables are synchronized now too\nFixed variable names that contain spaces",
-                "de": "Schreiben von pimatic-Variablen korrigiert: das erforderliche common.type fehlte (js-controller 4.x und neuer)\nSchreibgeschützte Variablen werden jetzt ebenfalls synchronisiert\nVariablennamen mit Leerzeichen korrigiert",
-                "ru": "Исправлена запись переменных pimatic: отсутствовал обязательный common.type (js-controller 4.x и новее)\nПеременные только для чтения теперь тоже синхронизируются\nИсправлены имена переменных с пробелами",
-                "pt": "Corrigida a escrita de variáveis pimatic: faltava o common.type obrigatório (js-controller 4.x e mais recente)\nVariáveis somente leitura agora também são sincronizadas\nCorrigidos nomes de variáveis com espaços",
-                "nl": "Schrijven van pimatic-variabelen gecorrigeerd: de vereiste common.type ontbrak (js-controller 4.x en nieuwer)\nAlleen-lezen variabelen worden nu ook gesynchroniseerd\nVariabelenamen met spaties gecorrigeerd",
-                "fr": "Correction de l'écriture des variables pimatic : le common.type requis manquait (js-controller 4.x et plus récent)\nLes variables en lecture seule sont désormais également synchronisées\nCorrection des noms de variables contenant des espaces",
-                "it": "Corretta la scrittura delle variabili pimatic: mancava il common.type richiesto (js-controller 4.x e successivi)\nLe variabili di sola lettura ora vengono sincronizzate\nCorretti i nomi delle variabili che contengono spazi",
-                "es": "Corregida la escritura de variables pimatic: faltaba el common.type requerido (js-controller 4.x y posterior)\nLas variables de solo lectura ahora también se sincronizan\nCorregidos los nombres de variables con espacios",
-                "pl": "Naprawiono zapis zmiennych pimatic: brakowało wymaganego common.type (js-controller 4.x i nowszy)\nZmienne tylko do odczytu są teraz również synchronizowane\nNaprawiono nazwy zmiennych zawierające spacje",
-                "uk": "Виправлено запис змінних pimatic: був відсутній обовʼязковий common.type (js-controller 4.x і новіші)\nЗмінні лише для читання тепер також синхронізуються\nВиправлено імена змінних із пробілами",
-                "zh-cn": "修复了 pimatic 变量的写入：缺少必需的 common.type（js-controller 4.x 及更高版本）\n现在也会同步只读变量\n修复了包含空格的变量名"
-            },
-            "0.3.2": {
-                "en": "Prepare for future js-controller versions",
-                "de": "Bereiten Sie sich auf zukünftige js-Controller-Versionen",
-                "ru": "Подготовьтесь к будущим версиям js-controller",
-                "pt": "Prepare-se para futuras versões js-controller",
-                "nl": "Bereid je voor op toekomstige Js-controller versie",
-                "fr": "Préparez-vous pour les versions futures de js-controller",
-                "it": "Prepararsi per le future versioni js-controller",
-                "es": "Prepararse para futuras versiones js-controller",
-                "pl": "Prepare for future js-controller version",
-                "uk": "Підготовка до майбутніх версій js-controller",
-                "zh-cn": "今后防污版本的编制"
-            },
-            "0.3.0": {
-                "en": "compatibility for js-controller 3.0 added, dependencies updated and removed support for admin 2",
-                "de": "Kompatibilität für js-controller 3.0 hinzugefügt, Abhängigkeiten aktualisiert und Unterstützung für admin 2 entfernt",
-                "ru": "добавлена совместимость для js-controller 3.0, обновлены зависимости и удалена поддержка admin 2",
-                "pt": "compatibilidade para js-controller 3.0 adicionada, dependências atualizadas e suporte removido para admin 2",
-                "nl": "compatibiliteit voor js-controller 3.0 toegevoegd, afhankelijkheden bijgewerkt en verwijderd ondersteuning voor admin 2",
-                "fr": "compatibilité pour js-controller 3.0 ajoutée, dépendances mises à jour et suppression de la prise en charge pour admin 2",
-                "it": "compatibilità per js-controller 3.0 aggiunta, dipendenze aggiornate e supporto rimosso per admin 2",
-                "es": "compatibilidad para js-controller 3.0 agregado, dependencias actualizadas y soporte eliminado para admin 2",
-                "pl": "dodano kompatybilność dla js-kontrolera 3.0, zaktualizowano zależności i usunięto wsparcie dla administratora 2",
-                "zh-cn": "添加了对js-controller 3.0的兼容性，更新了依赖项并删除了对admin 2的支持"
-            },
-            "0.2.1": {
-                "en": "Added Variables with Readonly false to the Sync\nReafactoring (compact mode, ES6)",
-                "de": "Variablen mit Readonly false zur Synchronisierung hinzugefügt\nReafactoring (Kompaktmodus, ES6)",
-                "ru": "Добавлены переменные с Readonly false для синхронизации\nРефакторинг (компактный режим, ES6)",
-                "pt": "Variáveis adicionadas com Readonly false à sincronização\nReativação (modo compacto, ES6)",
-                "nl": "Variabelen met readonly false toegevoegd aan de synchronisatie\nReafactoring (compacte modus, ES6)",
-                "fr": "Ajout de variables avec Readonly false à la synchronisation\nRéactivation (mode compact, ES6)",
-                "it": "Aggiunte variabili con Readonly false alla sincronizzazione\nReafactoring (modalità compatta, ES6)",
-                "es": "Se agregaron variables con Readonly false a la sincronización\nReafactorización (modo compacto, ES6)",
-                "pl": "Dodano zmienne z Readonly false do synchronizacji\nReafaktoryzacja (tryb kompaktowy, ES6)",
-                "zh-cn": "向同步添加了具有只读false的变量\n重构（紧凑模式，ES6）"
-            },
-            "0.1.5": {
-                "en": "add translation of config dialog",
-                "de": "Übersetzungen von Config-Dialog hinzugefügt",
-                "ru": "Добавлен перевод настроек"
-            },
-            "0.1.3": {
-                "en": "convert on/off to true/false\nRemove indicator.presence",
-                "de": "Konvertiere on/off nach true/false\nindicator.presence deaktiviert",
-                "ru": "Конвертировать on/off в true/false\nУбрана роль indicator.presence"
-            },
-            "0.1.2": {
-                "en": "fixed error",
-                "de": "korrigiere Fehler",
-                "ru": "Исправлена ошибка"
-            },
-            "0.1.1": {
-                "en": "initial adapter",
-                "de": "Initiale Version",
-                "ru": "Первоначальный адаптер"
-            }
-        },
-        "titleLang": {
-            "en": "pimatic",
-            "de": "pimatic",
-            "ru": "pimatic",
-            "pt": "pimatic",
-            "nl": "pimatic",
-            "fr": "pimatic",
-            "it": "pimatic",
-            "es": "pimatic",
-            "pl": "pimatic",
-            "uk": "pimatic",
-            "zh-cn": "pimatic"
-        },
-        "desc": {
-            "en": "Exports devices and groups from pimatic and then monitors updates of variables",
-            "de": "Exportiert Geräte und Gruppen aus pimatic und überwacht dann Aktualisierungen von Variablen",
-            "ru": "Экспортирует устройства и группы из pimatic, а затем следит за обновлениями переменных",
-            "pt": "Exporta dispositivos e grupos do pimatic e monitora atualizações de variáveis",
-            "nl": "Exporteert apparaten en groepen uit Pimatic en controleert vervolgens updates van variabelen",
-            "fr": "Exporte les appareils et les groupes de pimatic, puis surveille les mises à jour des variables",
-            "it": "Esporta dispositivi e gruppi da pimatic e quindi monitora gli aggiornamenti delle variabili",
-            "es": "Exporta dispositivos y grupos desde pimatic y luego monitorea actualizaciones de variables",
-            "pl": "Eksportuje urządzenia i grupy z pimatic, a następnie monitoruje aktualizacje zmiennych",
-            "zh-cn": "从pimatic导出设备和组，然后监视变量的更新"
-        },
-        "platform": "Javascript/Node.js",
-        "mode": "daemon",
-        "icon": "pimatic.png",
-        "enabled": true,
-        "licenseInformation": {
-            "type": "free",
-            "license": "MIT"
-        },
-        "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.pimatic/master/admin/pimatic.png",
-        "keywords": [
-            "pimatic"
-        ],
-        "readme": "https://github.com/ioBroker/ioBroker.pimatic/blob/master/README.md",
-        "loglevel": "info",
-        "tier": 2,
-        "compact": true,
-        "type": "iot-systems",
-        "authors": [
-            {
-                "name": "bluefox",
-                "email": "dogafox@gmail.com"
-            }
-        ],
-        "dependencies": [
-            {
-                "js-controller": ">=6.0.11"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=7.0.0"
-            }
-        ],
-        "adminUI": {
-            "config": "json"
-        }
+  "common": {
+    "name": "pimatic",
+    "version": "1.0.0",
+    "news": {
+      "1.0.0": {
+        "en": "The adapter was refactored to TypeScript and the configuration dialog to JsonConfig\n**Breaking:** requires node.js >= 22, js-controller >= 6.0.11 and admin >= 7.0.0 now\nFixed the password: it was stored under a different name than the one the adapter read\nFixed the update of already existing states, they were written to an undefined ID\n`request` was replaced by `axios`, the unused `sqlite3` dependency was removed",
+        "de": "Der Adapter wurde nach TypeScript und der Konfigurationsdialog nach JsonConfig umstrukturiert.\n**Wichtig:** Erfordert jetzt node.js >= 22, js-controller >= 6.0.11 und admin >= 7.0.0.\nDas Passwort wurde korrigiert: Es war unter einem anderen Namen gespeichert als dem, den der Adapter gelesen hatte.\nDas Update bereits vorhandener Zustände wurde korrigiert; sie wurden einer undefinierten ID zugeordnet.\n`request` wurde durch `axios` ersetzt, die nicht mehr benötigte Abhängigkeit `sqlite3` wurde entfernt.",
+        "ru": "Адаптер был переписан на TypeScript, а диалоговое окно конфигурации — на JsonConfig.\n**Критическое изменение:** теперь требуется Node.js >= 22, js-controller >= 6.0.11 и admin >= 7.0.0\nИсправлен пароль: он хранился под другим именем, отличным от того, которое считывал адаптер.\nИсправлена ошибка обновления уже существующих состояний, они записывались с неопределенным идентификатором.\n`request` был заменен на `axios`, а неиспользуемая зависимость `sqlite3` была удалена.",
+        "pt": "O adaptador foi refatorado para TypeScript e a caixa de diálogo de configuração para JsonConfig.\n**Atenção:** agora requer node.js >= 22, js-controller >= 6.0.11 e admin >= 7.0.0.\nSenha corrigida: ela estava armazenada com um nome diferente do que o adaptador lia.\nCorrigida a atualização de estados já existentes, que estavam sendo gravados em um ID indefinido.\n`request` foi substituído por `axios`, e a dependência não utilizada `sqlite3` foi removida.",
+        "nl": "De adapter is geherstructureerd naar TypeScript en het configuratiedialoogvenster naar JsonConfig.\n**Belangrijke update:** vereist nu node.js >= 22, js-controller >= 6.0.11 en admin >= 7.0.0\nHet wachtwoord is gecorrigeerd: het was opgeslagen onder een andere naam dan degene die de adapter las.\nDe update van reeds bestaande statussen is gecorrigeerd; deze werden naar een ongedefinieerde ID geschreven.\n`request` is vervangen door `axios`, de ongebruikte `sqlite3`-afhankelijkheid is verwijderd.",
+        "fr": "L'adaptateur a été remanié en TypeScript et la boîte de dialogue de configuration en JsonConfig.\n**Rappel important :** nécessite désormais node.js >= 22, js-controller >= 6.0.11 et admin >= 7.0.0\nMot de passe corrigé : il était enregistré sous un nom différent de celui lu par l’adaptateur.\nCorrection de la mise à jour des états existants, qui étaient enregistrés dans un ID indéfini.\n`request` a été remplacé par `axios`, la dépendance `sqlite3` inutilisée a été supprimée",
+        "it": "L'adattatore è stato riscritto in TypeScript e la finestra di dialogo di configurazione in JsonConfig.\n**Attenzione:** ora richiede node.js >= 22, js-controller >= 6.0.11 e admin >= 7.0.0\nPassword corretta: era memorizzata con un nome diverso da quello letto dall'adattatore.\nRisolto l'aggiornamento degli stati già esistenti, che venivano scritti con un ID non definito.\n`request` è stato sostituito da `axios`, la dipendenza inutilizzata `sqlite3` è stata rimossa",
+        "es": "El adaptador se refactorizó a TypeScript y el diálogo de configuración a JsonConfig.\n**Noticia importante:** ahora requiere node.js >= 22, js-controller >= 6.0.11 y admin >= 7.0.0.\nSe corrigió la contraseña: estaba almacenada con un nombre diferente al que leía el adaptador.\nSe corrigió la actualización de estados ya existentes, que se escribían en un ID indefinido.\n`request` fue reemplazado por `axios`, y se eliminó la dependencia `sqlite3` no utilizada.",
+        "pl": "Adapter został przebudowany na TypeScript, a okno dialogowe konfiguracji na JsonConfig\n**Uwaga:** wymaga teraz node.js >= 22, js-controller >= 6.0.11 i admin >= 7.0.0\nNaprawiono hasło: było zapisane pod inną nazwą niż ta, którą odczytał adapter\nNaprawiono aktualizację już istniejących stanów, zostały one zapisane do niezdefiniowanego ID\n`request` został zastąpiony przez `axios`, usunięto nieużywaną zależność `sqlite3`",
+        "uk": "Адаптер було рефакторовано до TypeScript, а діалогове вікно конфігурації — до JsonConfig.\n**Помилка:** тепер вимагає node.js >= 22, js-controller >= 6.0.11 та admin >= 7.0.0\nВиправлено пароль: він зберігався під іншим ім'ям, ніж те, яке зчитував адаптер.\nВиправлено оновлення вже існуючих станів, вони записувалися до невизначеного ідентифікатора.\n`request` було замінено на `axios`, невикористану залежність `sqlite3` було видалено",
+        "zh-cn": "适配器重构为 TypeScript，配置对话框重构为 JsonConfig。\n**重大变更：** 现在需要 node.js >= 22、js-controller >= 6.0.11 和 admin >= 7.0.0。\n密码已修复：它存储的名称与适配器读取的名称不同。\n修复了已存在状态的更新问题，之前它们被写入了一个未定义的 ID。\n`request` 已被 `axios` 取代，未使用的 `sqlite3` 依赖项已被移除。"
+      },
+      "0.3.3": {
+        "en": "Fixed the write of pimatic variables: the required common.type was missing (js-controller 4.x and newer)\nRead-only variables are synchronized now too\nFixed variable names that contain spaces",
+        "de": "Schreiben von pimatic-Variablen korrigiert: das erforderliche common.type fehlte (js-controller 4.x und neuer)\nSchreibgeschützte Variablen werden jetzt ebenfalls synchronisiert\nVariablennamen mit Leerzeichen korrigiert",
+        "ru": "Исправлена запись переменных pimatic: отсутствовал обязательный common.type (js-controller 4.x и новее)\nПеременные только для чтения теперь тоже синхронизируются\nИсправлены имена переменных с пробелами",
+        "pt": "Corrigida a escrita de variáveis pimatic: faltava o common.type obrigatório (js-controller 4.x e mais recente)\nVariáveis somente leitura agora também são sincronizadas\nCorrigidos nomes de variáveis com espaços",
+        "nl": "Schrijven van pimatic-variabelen gecorrigeerd: de vereiste common.type ontbrak (js-controller 4.x en nieuwer)\nAlleen-lezen variabelen worden nu ook gesynchroniseerd\nVariabelenamen met spaties gecorrigeerd",
+        "fr": "Correction de l'écriture des variables pimatic : le common.type requis manquait (js-controller 4.x et plus récent)\nLes variables en lecture seule sont désormais également synchronisées\nCorrection des noms de variables contenant des espaces",
+        "it": "Corretta la scrittura delle variabili pimatic: mancava il common.type richiesto (js-controller 4.x e successivi)\nLe variabili di sola lettura ora vengono sincronizzate\nCorretti i nomi delle variabili che contengono spazi",
+        "es": "Corregida la escritura de variables pimatic: faltaba el common.type requerido (js-controller 4.x y posterior)\nLas variables de solo lectura ahora también se sincronizan\nCorregidos los nombres de variables con espacios",
+        "pl": "Naprawiono zapis zmiennych pimatic: brakowało wymaganego common.type (js-controller 4.x i nowszy)\nZmienne tylko do odczytu są teraz również synchronizowane\nNaprawiono nazwy zmiennych zawierające spacje",
+        "uk": "Виправлено запис змінних pimatic: був відсутній обовʼязковий common.type (js-controller 4.x і новіші)\nЗмінні лише для читання тепер також синхронізуються\nВиправлено імена змінних із пробілами",
+        "zh-cn": "修复了 pimatic 变量的写入：缺少必需的 common.type（js-controller 4.x 及更高版本）\n现在也会同步只读变量\n修复了包含空格的变量名"
+      },
+      "0.3.2": {
+        "en": "Prepare for future js-controller versions",
+        "de": "Bereiten Sie sich auf zukünftige js-Controller-Versionen",
+        "ru": "Подготовьтесь к будущим версиям js-controller",
+        "pt": "Prepare-se para futuras versões js-controller",
+        "nl": "Bereid je voor op toekomstige Js-controller versie",
+        "fr": "Préparez-vous pour les versions futures de js-controller",
+        "it": "Prepararsi per le future versioni js-controller",
+        "es": "Prepararse para futuras versiones js-controller",
+        "pl": "Prepare for future js-controller version",
+        "uk": "Підготовка до майбутніх версій js-controller",
+        "zh-cn": "今后防污版本的编制"
+      },
+      "0.3.0": {
+        "en": "compatibility for js-controller 3.0 added, dependencies updated and removed support for admin 2",
+        "de": "Kompatibilität für js-controller 3.0 hinzugefügt, Abhängigkeiten aktualisiert und Unterstützung für admin 2 entfernt",
+        "ru": "добавлена совместимость для js-controller 3.0, обновлены зависимости и удалена поддержка admin 2",
+        "pt": "compatibilidade para js-controller 3.0 adicionada, dependências atualizadas e suporte removido para admin 2",
+        "nl": "compatibiliteit voor js-controller 3.0 toegevoegd, afhankelijkheden bijgewerkt en verwijderd ondersteuning voor admin 2",
+        "fr": "compatibilité pour js-controller 3.0 ajoutée, dépendances mises à jour et suppression de la prise en charge pour admin 2",
+        "it": "compatibilità per js-controller 3.0 aggiunta, dipendenze aggiornate e supporto rimosso per admin 2",
+        "es": "compatibilidad para js-controller 3.0 agregado, dependencias actualizadas y soporte eliminado para admin 2",
+        "pl": "dodano kompatybilność dla js-kontrolera 3.0, zaktualizowano zależności i usunięto wsparcie dla administratora 2",
+        "zh-cn": "添加了对js-controller 3.0的兼容性，更新了依赖项并删除了对admin 2的支持"
+      },
+      "0.2.1": {
+        "en": "Added Variables with Readonly false to the Sync\nReafactoring (compact mode, ES6)",
+        "de": "Variablen mit Readonly false zur Synchronisierung hinzugefügt\nReafactoring (Kompaktmodus, ES6)",
+        "ru": "Добавлены переменные с Readonly false для синхронизации\nРефакторинг (компактный режим, ES6)",
+        "pt": "Variáveis adicionadas com Readonly false à sincronização\nReativação (modo compacto, ES6)",
+        "nl": "Variabelen met readonly false toegevoegd aan de synchronisatie\nReafactoring (compacte modus, ES6)",
+        "fr": "Ajout de variables avec Readonly false à la synchronisation\nRéactivation (mode compact, ES6)",
+        "it": "Aggiunte variabili con Readonly false alla sincronizzazione\nReafactoring (modalità compatta, ES6)",
+        "es": "Se agregaron variables con Readonly false a la sincronización\nReafactorización (modo compacto, ES6)",
+        "pl": "Dodano zmienne z Readonly false do synchronizacji\nReafaktoryzacja (tryb kompaktowy, ES6)",
+        "zh-cn": "向同步添加了具有只读false的变量\n重构（紧凑模式，ES6）"
+      },
+      "0.1.5": {
+        "en": "add translation of config dialog",
+        "de": "Übersetzungen von Config-Dialog hinzugefügt",
+        "ru": "Добавлен перевод настроек"
+      },
+      "0.1.3": {
+        "en": "convert on/off to true/false\nRemove indicator.presence",
+        "de": "Konvertiere on/off nach true/false\nindicator.presence deaktiviert",
+        "ru": "Конвертировать on/off в true/false\nУбрана роль indicator.presence"
+      }
     },
-    "encryptedNative": [
-        "enc_password"
-    ],
-    "protectedNative": [
-        "enc_password"
-    ],
-    "native": {
-        "host": "localhost",
-        "port": 80,
-        "username": "",
-        "enc_password": ""
+    "titleLang": {
+      "en": "pimatic",
+      "de": "pimatic",
+      "ru": "pimatic",
+      "pt": "pimatic",
+      "nl": "pimatic",
+      "fr": "pimatic",
+      "it": "pimatic",
+      "es": "pimatic",
+      "pl": "pimatic",
+      "uk": "pimatic",
+      "zh-cn": "pimatic"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "If connected to pimatic server",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        }
-    ]
+    "desc": {
+      "en": "Exports devices and groups from pimatic and then monitors updates of variables",
+      "de": "Exportiert Geräte und Gruppen aus pimatic und überwacht dann Aktualisierungen von Variablen",
+      "ru": "Экспортирует устройства и группы из pimatic, а затем следит за обновлениями переменных",
+      "pt": "Exporta dispositivos e grupos do pimatic e monitora atualizações de variáveis",
+      "nl": "Exporteert apparaten en groepen uit Pimatic en controleert vervolgens updates van variabelen",
+      "fr": "Exporte les appareils et les groupes de pimatic, puis surveille les mises à jour des variables",
+      "it": "Esporta dispositivi e gruppi da pimatic e quindi monitora gli aggiornamenti delle variabili",
+      "es": "Exporta dispositivos y grupos desde pimatic y luego monitorea actualizaciones de variables",
+      "pl": "Eksportuje urządzenia i grupy z pimatic, a następnie monitoruje aktualizacje zmiennych",
+      "zh-cn": "从pimatic导出设备和组，然后监视变量的更新"
+    },
+    "platform": "Javascript/Node.js",
+    "mode": "daemon",
+    "icon": "pimatic.png",
+    "enabled": true,
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
+    "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.pimatic/master/admin/pimatic.png",
+    "keywords": [
+      "pimatic"
+    ],
+    "readme": "https://github.com/ioBroker/ioBroker.pimatic/blob/master/README.md",
+    "loglevel": "info",
+    "tier": 2,
+    "compact": true,
+    "type": "iot-systems",
+    "authors": [
+      {
+        "name": "bluefox",
+        "email": "dogafox@gmail.com"
+      }
+    ],
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.11"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=7.0.0"
+      }
+    ],
+    "adminUI": {
+      "config": "json"
+    }
+  },
+  "encryptedNative": [
+    "enc_password"
+  ],
+  "protectedNative": [
+    "enc_password"
+  ],
+  "native": {
+    "host": "localhost",
+    "port": 80,
+    "username": "",
+    "enc_password": ""
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "If connected to pimatic server",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
 }

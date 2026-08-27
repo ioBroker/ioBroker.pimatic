@@ -9,8 +9,7 @@ This adapter connects ioBroker with [pimatic](https://pimatic.org/).
 It exports devices and groups from pimatic and then monitors updates of variables.
 
 ## Changelog
-
-### **WORK IN PROGRESS**
+### 1.0.0 (2026-08-27)
 * (bluefox) The adapter was refactored to TypeScript and the configuration dialog to JsonConfig
 * (bluefox) **Breaking:** requires node.js >= 22, js-controller >= 6.0.11 and admin >= 7.0.0 now
 * (bluefox) Fixed the password: it was stored under a different name than the one the adapter read
@@ -33,19 +32,6 @@ It exports devices and groups from pimatic and then monitors updates of variable
 ### 0.2.1 (2020.03.08)
 * (tehmilcho) Added Variables with Readonly false to the Sync
 * (bluefox) Refactoring (compact mode, ES6)
-
-### 0.1.5 (2017.05.02)
-* (bluefox) add translation of config dialog
-
-### 0.1.3
-* (bluefox) convert on/off to true/false
-* (bluefox) Remove indicator.presence
-
-### 0.1.2
-* (bluefox) fixed error
-
-### 0.1.1
-* (bluefox) initial release
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 
