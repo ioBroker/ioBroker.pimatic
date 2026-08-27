@@ -28,7 +28,7 @@
     "@iobroker/adapter-core": "^3.4.3",
     "request": "^2.88.2",
     "socket.io-client": "^2.5.0",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^6.0.1"
   },
   "devDependencies": {
     "@iobroker/eslint-config": "^2.3.4",
