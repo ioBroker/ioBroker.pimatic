@@ -10,6 +10,12 @@ It exports devices and groups from pimatic and then monitors updates of variable
 
 ## Changelog
 
+### 0.3.3 (2026.08.27)
+* (fennsen64) Fixed the write of pimatic variables: the required `common.type` was missing (js-controller 4.x and newer)
+* (bluefox) Read-only pimatic variables are synchronized now too
+* (bluefox) Fixed the ID of variables with spaces in the name
+* (ioBroker-Bot) Adapter requires js-controller >= 6.0.11 now
+
 ### 0.3.2 (2023.03.22)
 * (Apollon77) Prepare for future js-controller versions
 
@@ -19,7 +25,7 @@ It exports devices and groups from pimatic and then monitors updates of variable
 
 ### 0.2.1 (2020.03.08)
 * (tehmilcho) Added Variables with Readonly false to the Sync
-* (bluefox) Reafactoring (compact mode, ES6)
+* (bluefox) Refactoring (compact mode, ES6)
 
 ### 0.1.5 (2017.05.02)
 * (bluefox) add translation of config dialog
@@ -34,10 +40,12 @@ It exports devices and groups from pimatic and then monitors updates of variable
 ### 0.1.1
 * (bluefox) initial release
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2017-2023 bluefox <dogafox@gmail.com>
+Copyright (c) 2017-2026 bluefox <dogafox@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

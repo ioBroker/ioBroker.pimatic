@@ -414,39 +414,55 @@ function syncVariables(variables, callback) {
     const _states = [];
 
     for (let v = 0; v < variables.length; v++) {
-        const localObjects = [];
         const variable = variables[v];
+        adapter.log.debug('Handle Variables: ' + JSON.stringify(variable));
+
+        // the ID must be built in the same way as in the "variables" event handler
+        const id = adapter.namespace + '.devices.' + variable.name.replace(/\s/g, '_');
+
+        const obj = {
+            _id: id,
+            common: {
+                name: variable.name,
+                read: true,
+                // read-only variables (expressions) cannot be written back to pimatic
+                write: !variable.readonly,
+                // pimatic variables are not typed: the value can be a number, a string or a boolean
+                type: 'mixed',
+                role: 'pimatic-variable'
+            },
+            native: {
+                // pimatic requires the original name and not the sanitized ID
+                name: variable.name
+            },
+            type: 'state'
+        };
+
         if (!variable.readonly) {
-            adapter.log.debug('Handle Variables: ' + JSON.stringify(variable));
-            const obj = {
-                _id: adapter.namespace + '.devices.' + variable.name,
-                common: {
-                    name: variable.name,
-                    read: true,
-                    write: true,
-                    type: 'string',
-                    role: 'pimatic-variable'
-                },
-                native: {
-                    name: variable.name,
-                    control: {
-                        action: 'updateVariable',
-                        deviceId: variable.name
-                    }
-                },
-                type: 'state'
+            obj.native.control = {
+                action: 'updateVariable',
+                deviceId: variable.name
             };
-            _states.push({
-                        _id: adapter.namespace + '.devices.' + variable.name,
-                        val: {
-                            ack: true,
-                            val: variable.value,
-                        }
-            });
-            objs.push(obj);
-            localObjects.push(obj);
         }
+
+        if (variable.value !== undefined && variable.value !== null) {
+            let val = variable.value;
+            const oObj = objects[id];
+            if (oObj && oObj.native && oObj.native.mapping && oObj.native.mapping[val] !== undefined) {
+                val = oObj.native.mapping[val];
+            }
+            _states.push({
+                _id: id,
+                val: {
+                    ack: true,
+                    val
+                }
+            });
+        }
+
+        objs.push(obj);
     }
+
     const ids = [];
     for (let vj = 0; vj < objs.length; vj++) {
         ids.push(objs[vj]._id);
@@ -544,34 +560,9 @@ function connect() {
         //adapter.log.debug('Rules ' + JSON.stringify(rules));
     });
 
-    client.on('variables', variables => {
-
-        syncVariables(variables);
-
-        const _states = [];
-        for (let s = 0; s < variables.length; s++) {
-            if (variables[s].value !== undefined && variables[s].value !== null) {
-                const state = {
-                    _id: adapter.namespace + '.devices.' + variables[s].name.replace(/\s/g, '_'),
-                    val: {
-                        val: variables[s].value,
-                        ack: true
-                    }
-                };
-                if (objects[state._id]) {
-                    if (objects[state._id].native && objects[state._id].native.mapping) {
-                        if (objects[state._id].native.mapping[variables[s].value] !== undefined) {
-                            state.val.val = objects[state._id].native.mapping[variables[s].value];
-                        }
-                    }
-                    _states.push(state);
-                } else {
-                    adapter.log.warn('Unknown state: ' + state._id);
-                }
-            }
-        }
-        syncStates(_states);
-    });
+    client.on('variables', variables =>
+        // syncVariables creates the objects AND writes the values, so no extra syncStates here
+        syncVariables(variables));
 
     client.on('pages', pages => {
         //adapter.log.debug('pages ' + JSON.stringify(pages));

@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "pimatic",
-        "version": "0.3.2",
+        "version": "0.3.3",
         "news": {
+            "0.3.3": {
+                "en": "Fixed the write of pimatic variables: the required common.type was missing (js-controller 4.x and newer)\nRead-only variables are synchronized now too\nFixed variable names that contain spaces",
+                "de": "Schreiben von pimatic-Variablen korrigiert: das erforderliche common.type fehlte (js-controller 4.x und neuer)\nSchreibgeschützte Variablen werden jetzt ebenfalls synchronisiert\nVariablennamen mit Leerzeichen korrigiert",
+                "ru": "Исправлена запись переменных pimatic: отсутствовал обязательный common.type (js-controller 4.x и новее)\nПеременные только для чтения теперь тоже синхронизируются\nИсправлены имена переменных с пробелами",
+                "pt": "Corrigida a escrita de variáveis pimatic: faltava o common.type obrigatório (js-controller 4.x e mais recente)\nVariáveis somente leitura agora também são sincronizadas\nCorrigidos nomes de variáveis com espaços",
+                "nl": "Schrijven van pimatic-variabelen gecorrigeerd: de vereiste common.type ontbrak (js-controller 4.x en nieuwer)\nAlleen-lezen variabelen worden nu ook gesynchroniseerd\nVariabelenamen met spaties gecorrigeerd",
+                "fr": "Correction de l'écriture des variables pimatic : le common.type requis manquait (js-controller 4.x et plus récent)\nLes variables en lecture seule sont désormais également synchronisées\nCorrection des noms de variables contenant des espaces",
+                "it": "Corretta la scrittura delle variabili pimatic: mancava il common.type richiesto (js-controller 4.x e successivi)\nLe variabili di sola lettura ora vengono sincronizzate\nCorretti i nomi delle variabili che contengono spazi",
+                "es": "Corregida la escritura de variables pimatic: faltaba el common.type requerido (js-controller 4.x y posterior)\nLas variables de solo lectura ahora también se sincronizan\nCorregidos los nombres de variables con espacios",
+                "pl": "Naprawiono zapis zmiennych pimatic: brakowało wymaganego common.type (js-controller 4.x i nowszy)\nZmienne tylko do odczytu są teraz również synchronizowane\nNaprawiono nazwy zmiennych zawierające spacje",
+                "uk": "Виправлено запис змінних pimatic: був відсутній обовʼязковий common.type (js-controller 4.x і новіші)\nЗмінні лише для читання тепер також синхронізуються\nВиправлено імена змінних із пробілами",
+                "zh-cn": "修复了 pimatic 变量的写入：缺少必需的 common.type（js-controller 4.x 及更高版本）\n现在也会同步只读变量\n修复了包含空格的变量名"
+            },
             "0.3.2": {
                 "en": "Prepare for future js-controller versions",
                 "de": "Bereiten Sie sich auf zukünftige js-Controller-Versionen",
@@ -78,14 +91,17 @@
         "mode": "daemon",
         "icon": "pimatic.png",
         "enabled": true,
-        "license": "MIT",
+        "licenseInformation": {
+            "type": "free",
+            "license": "MIT"
+        },
         "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.pimatic/master/admin/pimatic.png",
         "keywords": [
             "pimatic"
         ],
-        "materialize": true,
         "readme": "https://github.com/ioBroker/ioBroker.pimatic/blob/master/README.md",
         "loglevel": "info",
+        "tier": 2,
         "compact": true,
         "type": "iot-systems",
         "authors": [
@@ -96,19 +112,22 @@
         ],
         "dependencies": [
             {
-                "js-controller": ">=2.0.0"
+                "js-controller": ">=6.0.11"
             }
         ],
         "globalDependencies": [
             {
                 "admin": ">=3.0.0"
             }
-        ]
+        ],
+        "adminUI": {
+            "config": "materialize"
+        }
     },
-    "encryptedNative" : [
+    "encryptedNative": [
         "enc_password"
     ],
-    "protectedNative" : [
+    "protectedNative": [
         "enc_password"
     ],
     "native": {

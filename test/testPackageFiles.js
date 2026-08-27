@@ -33,7 +33,7 @@ describe('Test package.json and io-package.json', () => {
         expect(npmPackage.author, 'ERROR: Author in package.json needs to exist').to.exist;
         expect(ioPackage.common.authors, 'ERROR: Authors in io-package.json needs to exist').to.exist;
 
-        expect(ioPackage.common.license, 'ERROR: License missing in io-package in common.license').to.exist;
+        expect(ioPackage.common.licenseInformation && ioPackage.common.licenseInformation.license || ioPackage.common.license, 'ERROR: License missing in io-package in common.licenseInformation.license').to.exist;
 
         if (ioPackage.common.name.indexOf('template') !== 0) {
             if (Array.isArray(ioPackage.common.authors)) {
@@ -66,11 +66,11 @@ describe('Test package.json and io-package.json', () => {
         }
 
         if (!ioPackage.common.controller && !ioPackage.common.onlyWWW && !ioPackage.common.noConfig) {
-            if (!ioPackage.common.materialize || !fs.existsSync(__dirname + '/../admin/index_m.html') || !fs.existsSync(__dirname + '/../gulpfile.js')) {
+            if (!(ioPackage.common.materialize || (ioPackage.common.adminUI && ioPackage.common.adminUI.config === 'materialize')) || !fs.existsSync(__dirname + '/../admin/index_m.html') || !fs.existsSync(__dirname + '/../gulpfile.js')) {
                 console.log('WARNING: Admin3 support is missing! Please add it');
                 console.log();
             }
-            if (ioPackage.common.materialize) {
+            if ((ioPackage.common.materialize || (ioPackage.common.adminUI && ioPackage.common.adminUI.config === 'materialize'))) {
                 expect(fs.existsSync(__dirname + '/../admin/index_m.html'), 'Admin3 support is enabled in io-package.json, but index_m.html is missing!').to.be.true;
             }
         }
