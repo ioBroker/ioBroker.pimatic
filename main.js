@@ -535,10 +535,10 @@ function updateConnected(isConnected) {
 
 function connect() {
     url = url || 'http://'  + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/?username=' + encodeURIComponent(adapter.config.username) + '&password=';
-    credentials = credentials || encodeURIComponent(adapter.config.username) + ':' + encodeURIComponent(adapter.config.password);
+    credentials = credentials || encodeURIComponent(adapter.config.username) + ':' + encodeURIComponent(adapter.config.enc_password);
     getUrl = getUrl || '@' + adapter.config.host + (adapter.config.port ? ':' + adapter.config.port : '') + '/';
     adapter.log.debug('Connect: ' + url + 'xxx');
-    client = io.connect(url + encodeURIComponent(adapter.config.password), {
+    client = io.connect(url + encodeURIComponent(adapter.config.enc_password), {
         reconnection: true,
         reconnectionDelay: 1000,
         reconnectionDelayMax: 3000,
