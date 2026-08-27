@@ -74,7 +74,19 @@
                 "ru": "Первоначальный адаптер"
             }
         },
-        "title": "pimatic",
+        "titleLang": {
+            "en": "pimatic",
+            "de": "pimatic",
+            "ru": "pimatic",
+            "pt": "pimatic",
+            "nl": "pimatic",
+            "fr": "pimatic",
+            "it": "pimatic",
+            "es": "pimatic",
+            "pl": "pimatic",
+            "uk": "pimatic",
+            "zh-cn": "pimatic"
+        },
         "desc": {
             "en": "Exports devices and groups from pimatic and then monitors updates of variables",
             "de": "Exportiert Geräte und Gruppen aus pimatic und überwacht dann Aktualisierungen von Variablen",
@@ -117,11 +129,11 @@
         ],
         "globalDependencies": [
             {
-                "admin": ">=3.0.0"
+                "admin": ">=7.0.0"
             }
         ],
         "adminUI": {
-            "config": "materialize"
+            "config": "json"
         }
     },
     "encryptedNative": [
