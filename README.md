@@ -12,13 +12,13 @@ It exports devices and groups from pimatic and then monitors updates of variable
 
 ### **WORK IN PROGRESS**
 * (bluefox) The adapter was refactored to TypeScript and the configuration dialog to JsonConfig
-* (bluefox) **Breaking:** requires node.js >= 20, js-controller >= 6.0.11 and admin >= 7.0.0 now
+* (bluefox) **Breaking:** requires node.js >= 22, js-controller >= 6.0.11 and admin >= 7.0.0 now
 * (bluefox) Fixed the password: it was stored under a different name than the one the adapter read
 * (bluefox) Fixed the update of already existing states, they were written to an undefined ID
 * (bluefox) `request` was replaced by `axios`, the unused `sqlite3` dependency was removed
 
 ### 0.3.3 (2026.08.27)
-* (fennsen64) Fixed the write of pimatic variables: the required `common.type` was missing (js-controller 4.x and newer)
+* (fennsen64) Fixed the writing of pimatic variables: the required `common.type` was missing (js-controller 4.x and newer)
 * (bluefox) Read-only pimatic variables are synchronized now too
 * (bluefox) Fixed the ID of variables with spaces in the name
 * (ioBroker-Bot) Adapter requires js-controller >= 6.0.11 now

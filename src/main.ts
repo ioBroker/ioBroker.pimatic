@@ -5,7 +5,7 @@
  *
  * MIT License
  */
-import * as utils from '@iobroker/adapter-core';
+import { Adapter, type AdapterOptions } from '@iobroker/adapter-core';
 import axios from 'axios';
 import io from 'socket.io-client';
 
@@ -26,7 +26,7 @@ const QUALITY_DEVICE_ERROR = 0x40;
 /** Role every state gets unless a more specific one is detected */
 const DEFAULT_ROLE = 'state';
 
-class Pimatic extends utils.Adapter {
+class Pimatic extends Adapter {
     private client: SocketIOClient.Socket | null = null;
     /** every object this adapter created, by ID */
     private readonly objects: Record<string, PimaticObject> = {};
@@ -40,7 +40,7 @@ class Pimatic extends utils.Adapter {
     /** `user:password` for the REST URL */
     private credentials = '';
 
-    public constructor(options: Partial<utils.AdapterOptions> = {}) {
+    public constructor(options: Partial<AdapterOptions> = {}) {
         super({ ...options, name: 'pimatic' });
 
         this.on('ready', () => void this.onReady());
@@ -587,7 +587,7 @@ class Pimatic extends utils.Adapter {
 
 if (require.main !== module) {
     // Export the constructor in compact mode
-    module.exports = (options: Partial<utils.AdapterOptions> | undefined): Pimatic => new Pimatic(options);
+    module.exports = (options: Partial<AdapterOptions> | undefined): Pimatic => new Pimatic(options);
 } else {
     // otherwise start the instance directly
     (() => new Pimatic())();
