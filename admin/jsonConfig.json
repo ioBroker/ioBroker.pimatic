@@ -8,9 +8,11 @@
             "style": {
                 "width": "64px"
             },
+            "xs": 12,
             "sm": 12,
             "md": 2,
-            "lg": 1
+            "lg": 1,
+            "xl": 1
         },
         "host": {
             "type": "text",
@@ -19,33 +21,41 @@
             "validatorErrorText": "Please enter the address of your pimatic server",
             "validatorNoSaveOnError": true,
             "newLine": true,
+            "xs": 12,
             "sm": 12,
             "md": 6,
-            "lg": 4
+            "lg": 4,
+            "xl": 4
         },
         "port": {
             "type": "number",
             "label": "Port",
             "min": 1,
             "max": 65535,
+            "xs": 12,
             "sm": 12,
             "md": 3,
-            "lg": 2
+            "lg": 2,
+            "xl": 2
         },
         "username": {
             "type": "text",
             "label": "Username",
             "newLine": true,
+            "xs": 12,
             "sm": 12,
             "md": 6,
-            "lg": 4
+            "lg": 4,
+            "xl": 4
         },
         "enc_password": {
             "type": "password",
             "label": "Password",
+            "xs": 12,
             "sm": 12,
             "md": 6,
-            "lg": 4
+            "lg": 4,
+            "xl": 4
         }
     }
 }
